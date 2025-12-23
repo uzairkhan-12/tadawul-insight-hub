@@ -8,7 +8,7 @@ const allCompetitors = [
   { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
   { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
   { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
-  { name: "NYSE", x: 88, y: 88, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
+  { name: "NYSE", x: 88, y: 82, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
   { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
   { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
   { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
@@ -103,7 +103,7 @@ const PositioningMap = () => {
                     <img 
                       src={getFlagUrl(comp.country)} 
                       alt={comp.countryName}
-                      className="w-full h-full object-cover"
+                      className="w-[150%] h-[150%] object-cover"
                     />
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded whitespace-nowrap z-20 shadow-lg">
