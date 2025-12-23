@@ -94,8 +94,8 @@ const PositioningMap = () => {
                         : comp.tier === 1
                         ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background"
                         : comp.tier === 2
-                        ? "ring-2 ring-success ring-offset-1 ring-offset-background"
-                        : "ring-2 ring-info ring-offset-1 ring-offset-background"
+                        ? "ring-2 ring-secondary ring-offset-1 ring-offset-background"
+                        : "ring-2 ring-muted-foreground/50 ring-offset-1 ring-offset-background"
                     } ${
                       comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-10 h-10" : "w-8 h-8"
                     } bg-card`}
