@@ -24,7 +24,7 @@ const platforms = [
     players: [
       { name: "STC Pay Invest", type: "Digital Wallet", threat: "High", rating: 4.3 },
       { name: "Revolut", type: "Neobank", threat: "Medium", rating: 4.4 },
-      { name: "Wise", type: "Fintech", threat: "Low", rating: 4.2 },
+      { name: "Wise", type: "Fintech", threat: "Medium", rating: 4.2 },
     ],
   },
   {
