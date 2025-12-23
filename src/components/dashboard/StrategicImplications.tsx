@@ -70,9 +70,8 @@ const implications = {
       text: "Launch integrated retail investor app ecosystem", 
       category: "Digital",
       details: [
-        "Build unified mobile app with portfolio management",
         "Integrate educational content and market insights",
-        "Add social trading and community features",
+        "Encourage social trading and community features",
         "Implement gamification for investor engagement",
       ],
       timeline: "9-15 months",
