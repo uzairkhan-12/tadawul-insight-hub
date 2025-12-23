@@ -157,7 +157,7 @@ const StrategicImplications = () => {
                 being captured by agile neo-invest platforms, <span className="text-warning font-medium">product ecosystem</span> depth 
                 lags global benchmarks, and <span className="text-info font-medium">data monetization</span> faces global vendor competition. 
                 The strategic imperative is to defend the retail gateway while accelerating product innovation and 
-                technology platform expansion through Wamid.
+                technology platform expansion.
               </p>
             </div>
           </div>
