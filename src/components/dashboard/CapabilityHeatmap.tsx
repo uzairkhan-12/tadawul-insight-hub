@@ -17,7 +17,7 @@ const capabilities = [
 ];
 
 const allCompetitors = [
-  { name: "STG", region: "gcc", scores: [9, 8, 6, 5, 9, 8, 7, 8, 7, 7] },
+  { name: "STG", region: "gcc", scores: [9, 6, 6, 5, 9, 8, 7, 8, 7, 7] },
   { name: "ADX", region: "gcc", scores: [7, 7, 5, 4, 6, 7, 6, 5, 6, 7] },
   { name: "DFM", region: "gcc", scores: [5, 5, 4, 3, 5, 6, 5, 4, 5, 6] },
   { name: "QSE", region: "gcc", scores: [4, 5, 3, 3, 5, 6, 4, 4, 4, 5] },
