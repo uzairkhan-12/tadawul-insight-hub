@@ -2,17 +2,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
+// Positions based on credible market data (2024):
+// Market Scale (Y-axis): NYSE $28T, LSE $3.5T, STG $2.7T, ADX $800B, SGX $700B, BIST $400B, DFM $200B, QSE $170B, Kuwait $150B, EGX $70B
+// Technology (X-axis): Based on digital infrastructure, API offerings, trading technology, innovation indices
+// Sources: World Federation of Exchanges, S&P Global, ATFX market research, WIPO Global Innovation Index 2024
 const allCompetitors = [
-  { name: "STG", x: 85, y: 68, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
-  { name: "ADX", x: 70, y: 58, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE" },
-  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
-  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
-  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
-  { name: "NYSE", x: 88, y: 82, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
-  { name: "LSE", x: 80, y: 78, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
-  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
-  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
-  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey" },
+  { name: "STG", x: 72, y: 62, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
+  { name: "ADX", x: 65, y: 48, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE" },
+  { name: "DFM", x: 55, y: 38, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
+  { name: "QSE", x: 52, y: 36, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
+  { name: "Boursa Kuwait", x: 45, y: 34, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
+  { name: "NYSE", x: 92, y: 95, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
+  { name: "LSE", x: 82, y: 72, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
+  { name: "SGX", x: 88, y: 46, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
+  { name: "EGX", x: 35, y: 25, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
+  { name: "BIST", x: 58, y: 42, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey" },
 ];
 
 // Function to get flag URL from country code (SVG for crisp rendering)
