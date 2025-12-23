@@ -12,7 +12,7 @@ const allCompetitors = [
   { name: "DFM", x: 55, y: 38, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
   { name: "QSE", x: 52, y: 36, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
   { name: "Boursa Kuwait", x: 45, y: 34, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
-  { name: "NYSE", x: 92, y: 95, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
+  { name: "NYSE", x: 88, y: 85, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
   { name: "LSE", x: 82, y: 72, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
   { name: "SGX", x: 88, y: 46, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
   { name: "EGX", x: 35, y: 25, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
