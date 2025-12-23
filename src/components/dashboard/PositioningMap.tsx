@@ -17,7 +17,7 @@ const allCompetitors = [
 
 // Function to get flag URL from country code
 const getFlagUrl = (countryCode: string) => 
-  `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
+  `https://flagsapi.com/${countryCode.toUpperCase()}/flat/64.png`;
 
 const PositioningMap = () => {
   const { regionFilter } = useDashboardFilter();
