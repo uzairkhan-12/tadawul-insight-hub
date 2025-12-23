@@ -1,6 +1,8 @@
-import { AlertTriangle, Target, Lightbulb, ArrowRight, CheckCircle2, Shield } from "lucide-react";
+import { useState } from "react";
+import { AlertTriangle, Target, Lightbulb, ArrowRight, Shield, ChevronDown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const implications = {
   threats: [
@@ -16,11 +18,66 @@ const implications = {
     { text: "Retail engagement platform to capture next-gen investors", priority: "Critical" },
   ],
   priorities: [
-    { text: "Accelerate derivatives and ETF product roadmap", category: "Product" },
-    { text: "Strategic retail platform acquisition or partnership", category: "Distribution" },
-    { text: "Enhance Wamid data monetization capabilities", category: "Technology" },
-    { text: "Develop cross-border clearing interoperability", category: "Infrastructure" },
-    { text: "Launch integrated retail investor app ecosystem", category: "Digital" },
+    { 
+      text: "Accelerate derivatives and ETF product roadmap", 
+      category: "Product",
+      details: [
+        "Launch equity index futures and options by Q2 2025",
+        "Partner with global ETF providers for co-branded products",
+        "Develop Sharia-compliant structured products suite",
+        "Introduce sector-specific ETFs (energy, banking, real estate)",
+      ],
+      timeline: "12-18 months",
+      impact: "High revenue diversification"
+    },
+    { 
+      text: "Strategic retail platform acquisition or partnership", 
+      category: "Distribution",
+      details: [
+        "Evaluate acquisition targets among Saudi/GCC fintechs",
+        "Explore white-label partnership with neo-invest platforms",
+        "Develop API-first distribution strategy for brokers",
+        "Create retail investor loyalty and rewards program",
+      ],
+      timeline: "6-12 months",
+      impact: "Defend retail wallet share"
+    },
+    { 
+      text: "Enhance Wamid data monetization capabilities", 
+      category: "Technology",
+      details: [
+        "Launch premium real-time data feeds for institutions",
+        "Develop AI-powered analytics products",
+        "Create developer portal with sandbox environment",
+        "Establish data partnerships with global vendors",
+      ],
+      timeline: "12-24 months",
+      impact: "New recurring revenue stream"
+    },
+    { 
+      text: "Develop cross-border clearing interoperability", 
+      category: "Infrastructure",
+      details: [
+        "Establish CCP links with key GCC exchanges",
+        "Explore collateral optimization services",
+        "Implement T+1 settlement roadmap",
+        "Develop multi-currency clearing capabilities",
+      ],
+      timeline: "18-36 months",
+      impact: "Regional market integration"
+    },
+    { 
+      text: "Launch integrated retail investor app ecosystem", 
+      category: "Digital",
+      details: [
+        "Build unified mobile app with portfolio management",
+        "Integrate educational content and market insights",
+        "Add social trading and community features",
+        "Implement gamification for investor engagement",
+      ],
+      timeline: "9-15 months",
+      impact: "Next-gen investor capture"
+    },
   ],
 };
 
@@ -38,6 +95,16 @@ const getPriorityBadge = (priority: string) => {
 };
 
 const StrategicImplications = () => {
+  const [openItems, setOpenItems] = useState<number[]>([]);
+
+  const toggleItem = (index: number) => {
+    setOpenItems(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
   return (
     <section className="animate-slide-up" style={{ animationDelay: "0.7s" }}>
       <div className="flex items-center gap-3 mb-6">
@@ -107,7 +174,7 @@ const StrategicImplications = () => {
           </CardContent>
         </Card>
 
-        {/* Priority Plays */}
+        {/* Priority Plays - Clickable */}
         <Card className="glass-card border-primary/20 glow-gold">
           <CardHeader className="pb-3">
             <div className="flex items-center gap-3">
@@ -116,25 +183,58 @@ const StrategicImplications = () => {
               </div>
               <div>
                 <CardTitle className="text-base font-semibold text-primary">Priority Strategic Plays</CardTitle>
-                <p className="text-xs text-muted-foreground">Execute & Deliver</p>
+                <p className="text-xs text-muted-foreground">Click to expand details</p>
               </div>
             </div>
           </CardHeader>
           <CardContent className="pt-0">
             <div className="space-y-3">
               {implications.priorities.map((priority, index) => (
-                <div 
+                <Collapsible
                   key={index}
-                  className="p-3 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/30 transition-colors group cursor-pointer"
+                  open={openItems.includes(index)}
+                  onOpenChange={() => toggleItem(index)}
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Badge variant="glass" className="text-xs">{priority.category}</Badge>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm text-foreground">{priority.text}</p>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
+                  <CollapsibleTrigger asChild>
+                    <div 
+                      className="p-3 rounded-lg bg-primary/5 border border-primary/10 hover:border-primary/30 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <Badge variant="glass" className="text-xs">{priority.category}</Badge>
+                        <Badge variant="outline" className="text-xs text-muted-foreground border-border/50">
+                          {priority.timeline}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-foreground">{priority.text}</p>
+                        <ChevronDown 
+                          className={`w-4 h-4 text-muted-foreground group-hover:text-primary transition-all ${
+                            openItems.includes(index) ? "rotate-180" : ""
+                          }`} 
+                        />
+                      </div>
+                    </div>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="animate-accordion-down">
+                    <div className="mt-2 p-3 rounded-lg bg-muted/30 border border-border/30 space-y-3">
+                      <div>
+                        <p className="text-xs font-medium text-primary mb-2">Key Actions</p>
+                        <ul className="space-y-1.5">
+                          {priority.details.map((detail, i) => (
+                            <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                              <ArrowRight className="w-3 h-3 mt-0.5 text-primary flex-shrink-0" />
+                              {detail}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="pt-2 border-t border-border/30 flex items-center justify-between">
+                        <span className="text-xs text-muted-foreground">Expected Impact</span>
+                        <Badge variant="success" className="text-xs">{priority.impact}</Badge>
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
               ))}
             </div>
           </CardContent>
