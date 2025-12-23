@@ -1,19 +1,19 @@
-import { Smartphone, Landmark, CreditCard, TrendingUp, Users, Clock, Sparkles, Shield } from "lucide-react";
+import { Smartphone, Landmark, CreditCard, Building2, Users, Clock, Sparkles, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
 const platforms = [
   {
-    category: "GCC Neo-Invest Platforms",
-    description: "International market access providers competing for retail flows",
-    icon: CreditCard,
+    category: "Other Investment Offerings",
+    description: "Alternative assets competing for retail investment capital",
+    icon: Building2,
     color: "secondary",
     players: [
-      { name: "Sarwa", type: "UAE Robo-Advisor", threat: "High", rating: 4.5 },
-      { name: "Baraka", type: "UAE Fintech", threat: "High", rating: 4.7 },
-      { name: "Interactive Brokers", type: "Global Platform", threat: "Medium", rating: 4.1 },
-      { name: "eToro", type: "Global Social Trading", threat: "Medium", rating: 4.3 },
+      { name: "Real Estate Funds", type: "REITs & Property", threat: "High", rating: 4.5 },
+      { name: "Cryptocurrency", type: "Digital Assets", threat: "High", rating: 4.2 },
+      { name: "Gold & Commodities", type: "Physical Assets", threat: "Medium", rating: 4.0 },
+      { name: "Private Equity Access", type: "Alternative Investments", threat: "Medium", rating: 3.8 },
     ],
   },
   {
