@@ -17,14 +17,15 @@ const platforms = [
     ],
   },
   {
-    category: "Digital Banking Platforms",
-    description: "Banks bundling investment products into digital offerings",
+    category: "Digital Native Platforms",
+    description: "Saudi & GCC fintechs disrupting traditional investment access",
     icon: Landmark,
     color: "info",
     players: [
-      { name: "N26", type: "European Neobank", threat: "Medium", rating: 4.5 },
-      { name: "Revolut", type: "Neobank", threat: "Medium", rating: 4.4 },
-      { name: "Wise", type: "Fintech", threat: "Medium", rating: 4.2 },
+      { name: "Tarmeez", type: "KSA Investment Platform", threat: "High", rating: 4.4 },
+      { name: "Lendo", type: "KSA P2P Lending", threat: "Medium", rating: 4.2 },
+      { name: "Baraka", type: "UAE Neo-Invest", threat: "High", rating: 4.7 },
+      { name: "Sarwa", type: "UAE Robo-Advisor", threat: "High", rating: 4.5 },
     ],
   },
   {
