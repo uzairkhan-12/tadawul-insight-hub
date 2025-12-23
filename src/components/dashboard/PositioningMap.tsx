@@ -3,17 +3,21 @@ import { Badge } from "@/components/ui/badge";
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 const allCompetitors = [
-  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const, flag: "🇸🇦" },
-  { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const, flag: "🇦🇪" },
-  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, flag: "🇦🇪" },
-  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, flag: "🇶🇦" },
-  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const, flag: "🇰🇼" },
-  { name: "NYSE", x: 95, y: 95, tier: 3, region: "global", size: "large" as const, flag: "🇺🇸" },
-  { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const, flag: "🇬🇧" },
-  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const, flag: "🇸🇬" },
-  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const, flag: "🇪🇬" },
-  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const, flag: "🇹🇷" },
+  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
+  { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE" },
+  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
+  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
+  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
+  { name: "NYSE", x: 95, y: 95, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
+  { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
+  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
+  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
+  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey" },
 ];
+
+// Function to get flag URL from country code
+const getFlagUrl = (countryCode: string) => 
+  `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`;
 
 const PositioningMap = () => {
   const { regionFilter } = useDashboardFilter();
@@ -84,19 +88,23 @@ const PositioningMap = () => {
                   }}
                 >
                   <div
-                    className={`rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
+                    className={`rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-lg ${
                       comp.name === "STG"
-                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background glow-gold"
+                        ? "ring-3 ring-primary ring-offset-2 ring-offset-background glow-gold"
                         : comp.tier === 1
                         ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background"
                         : comp.tier === 2
                         ? "ring-2 ring-success ring-offset-1 ring-offset-background"
                         : "ring-2 ring-info ring-offset-1 ring-offset-background"
                     } ${
-                      comp.size === "large" ? "w-12 h-12 text-2xl" : comp.size === "medium" ? "w-10 h-10 text-xl" : "w-8 h-8 text-lg"
+                      comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-10 h-10" : "w-8 h-8"
                     } bg-card`}
                   >
-                    {comp.flag}
+                    <img 
+                      src={getFlagUrl(comp.country)} 
+                      alt={comp.countryName}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded whitespace-nowrap z-20 shadow-lg">
                     {comp.name}
