@@ -96,9 +96,10 @@ const competitorInsights: Record<number, { competitors: { name: string; position
   },
   5: {
     competitors: [
-      { name: "SNB Capital/Riyad Capital", position: "Incumbent brokers", threat: "Medium" },
-      { name: "Robinhood/eToro models", position: "Neo-invest threat", threat: "Very High" },
-      { name: "Digital banks", position: "Emerging", threat: "High" },
+      { name: "Real Estate Funds", position: "Alternative asset class", threat: "High" },
+      { name: "Cryptocurrency", position: "Digital assets", threat: "Very High" },
+      { name: "Gold & Commodities", position: "Traditional safe haven", threat: "Medium" },
+      { name: "Private Equity Access", position: "Alternative investments", threat: "Medium" },
     ],
     opportunities: [
       "Partner with neo-platforms for distribution",
@@ -106,9 +107,9 @@ const competitorInsights: Record<number, { competitors: { name: string; position
       "Create educational content platform",
     ],
     risks: [
-      "Neo-invest apps capturing retail wallet share",
-      "Digital banks bundling investment products",
-      "Generational shift in trading preferences",
+      "Alternative assets capturing retail wallet share",
+      "Digital assets attracting younger investors",
+      "Generational shift in investment preferences",
     ],
   },
 };
