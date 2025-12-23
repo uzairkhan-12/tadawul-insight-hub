@@ -103,7 +103,8 @@ const PositioningMap = () => {
                     <img 
                       src={getFlagUrl(comp.country)} 
                       alt={comp.countryName}
-                      className="w-[150%] h-[150%] object-cover"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded whitespace-nowrap z-20 shadow-lg">
