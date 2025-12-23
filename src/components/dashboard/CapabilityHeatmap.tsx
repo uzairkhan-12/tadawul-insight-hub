@@ -4,15 +4,15 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 const capabilities = [
-  "IPO Pipeline",
-  "Liquidity",
-  "ETFs",
-  "Derivatives",
-  "CCP Services",
-  "Settlement",
-  "Market Data",
-  "Retail Apps",
-  "Int'l Access",
+  { short: "IPO", full: "IPO Pipeline" },
+  { short: "LIQ", full: "Liquidity" },
+  { short: "ETF", full: "ETFs" },
+  { short: "DER", full: "Derivatives" },
+  { short: "CCP", full: "CCP Services" },
+  { short: "SET", full: "Settlement" },
+  { short: "DATA", full: "Market Data" },
+  { short: "APP", full: "Retail Apps" },
+  { short: "INT'L", full: "Int'l Access" },
 ];
 
 const allCompetitors = [
@@ -28,17 +28,18 @@ const allCompetitors = [
 ];
 
 const getHeatColor = (score: number) => {
-  if (score >= 9) return "bg-success";
-  if (score >= 7) return "bg-success/60";
-  if (score >= 5) return "bg-warning";
-  if (score >= 3) return "bg-danger/60";
-  return "bg-danger";
+  if (score >= 9) return "from-success to-success/80";
+  if (score >= 7) return "from-success/70 to-success/50";
+  if (score >= 5) return "from-warning to-warning/80";
+  if (score >= 3) return "from-danger/70 to-danger/50";
+  return "from-danger to-danger/80";
 };
 
-const getTextColor = (score: number) => {
-  if (score >= 7) return "text-success-foreground";
-  if (score >= 5) return "text-warning-foreground";
-  return "text-danger-foreground";
+const getGlowColor = (score: number) => {
+  if (score >= 9) return "shadow-[0_0_12px_hsla(142,76%,36%,0.4)]";
+  if (score >= 7) return "shadow-[0_0_8px_hsla(142,76%,36%,0.25)]";
+  if (score >= 5) return "shadow-[0_0_8px_hsla(38,92%,50%,0.25)]";
+  return "shadow-[0_0_8px_hsla(0,84%,60%,0.25)]";
 };
 
 const CapabilityHeatmap = () => {
@@ -46,7 +47,6 @@ const CapabilityHeatmap = () => {
 
   const filteredCompetitors = allCompetitors.filter((comp) => {
     if (regionFilter === "all") return true;
-    // Always show STG regardless of filter
     if (comp.name === "STG") return true;
     return comp.region === regionFilter;
   });
@@ -64,81 +64,106 @@ const CapabilityHeatmap = () => {
         )}
       </div>
 
-      <Card className="glass-card overflow-hidden">
-        <CardHeader className="pb-4">
+      <Card className="glass-card overflow-hidden border-border/30">
+        <CardHeader className="pb-4 border-b border-border/30">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <CardTitle className="text-base font-semibold">Cross-Peer Capability Comparison</CardTitle>
-            <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-6 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-success" />
-                <span className="text-muted-foreground">Strong (8-10)</span>
+                <div className="w-5 h-5 rounded-md bg-gradient-to-br from-success to-success/80 shadow-[0_0_8px_hsla(142,76%,36%,0.3)]" />
+                <span className="text-muted-foreground font-medium">Strong (8-10)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-warning" />
-                <span className="text-muted-foreground">Moderate (5-7)</span>
+                <div className="w-5 h-5 rounded-md bg-gradient-to-br from-warning to-warning/80 shadow-[0_0_8px_hsla(38,92%,50%,0.3)]" />
+                <span className="text-muted-foreground font-medium">Moderate (5-7)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded bg-danger" />
-                <span className="text-muted-foreground">Developing (1-4)</span>
+                <div className="w-5 h-5 rounded-md bg-gradient-to-br from-danger to-danger/80 shadow-[0_0_8px_hsla(0,84%,60%,0.3)]" />
+                <span className="text-muted-foreground font-medium">Developing (1-4)</span>
               </div>
             </div>
           </div>
         </CardHeader>
-        <CardContent className="pt-0">
+        <CardContent className="pt-0 px-0">
           <div className="overflow-x-auto">
             <TooltipProvider>
-              <table className="w-full min-w-[800px]">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-3 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wider sticky left-0 bg-card z-10">
-                      Exchange
-                    </th>
-                    {capabilities.map((cap) => (
-                      <th key={cap} className="text-center py-3 px-2 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        <div className="transform -rotate-45 origin-center whitespace-nowrap w-8 h-16 flex items-end justify-center">
-                          {cap}
+              <div className="min-w-[700px]">
+                {/* Header row */}
+                <div className="grid grid-cols-[120px_repeat(9,1fr)] gap-1 px-4 py-3 bg-muted/20 border-b border-border/20">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider pl-2">
+                    Exchange
+                  </div>
+                  {capabilities.map((cap) => (
+                    <Tooltip key={cap.short}>
+                      <TooltipTrigger asChild>
+                        <div className="text-center text-xs font-semibold text-muted-foreground uppercase tracking-wider cursor-help">
+                          {cap.short}
                         </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCompetitors.map((comp) => (
-                    <tr 
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{cap.full}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+
+                {/* Data rows */}
+                <div className="divide-y divide-border/10">
+                  {filteredCompetitors.map((comp, rowIndex) => (
+                    <div
                       key={comp.name}
-                      className={`border-b border-border/50 ${comp.name === "STG" ? "bg-primary/5" : "hover:bg-muted/30"} transition-colors`}
+                      className={`grid grid-cols-[120px_repeat(9,1fr)] gap-1 px-4 py-2 transition-all duration-200 ${
+                        comp.name === "STG"
+                          ? "bg-primary/8 hover:bg-primary/12"
+                          : rowIndex % 2 === 0
+                          ? "bg-transparent hover:bg-muted/20"
+                          : "bg-muted/5 hover:bg-muted/20"
+                      }`}
                     >
-                      <td className={`py-3 px-3 sticky left-0 z-10 ${comp.name === "STG" ? "bg-primary/5" : "bg-card"}`}>
-                        <div className="flex items-center gap-2">
-                          {comp.name === "STG" && (
-                            <Badge variant="default" className="text-xs">STG</Badge>
-                          )}
-                          <span className={`font-medium ${comp.name === "STG" ? "text-primary" : "text-foreground"}`}>
-                            {comp.name === "STG" ? "" : comp.name}
-                          </span>
-                        </div>
-                      </td>
+                      {/* Exchange name */}
+                      <div className="flex items-center gap-2 pl-2">
+                        {comp.name === "STG" ? (
+                          <Badge variant="default" className="text-xs font-bold px-3 py-1 glow-gold">
+                            STG
+                          </Badge>
+                        ) : (
+                          <span className="font-medium text-sm text-foreground/90">{comp.name}</span>
+                        )}
+                      </div>
+
+                      {/* Score cells */}
                       {comp.scores.map((score, colIndex) => (
-                        <td key={colIndex} className="py-2 px-1 text-center">
+                        <div key={colIndex} className="flex items-center justify-center">
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <div
-                                className={`w-10 h-10 mx-auto rounded-lg flex items-center justify-center font-mono font-bold text-sm cursor-pointer transition-transform hover:scale-110 ${getHeatColor(score)}`}
+                                className={`
+                                  w-9 h-9 rounded-lg flex items-center justify-center 
+                                  font-mono font-bold text-sm cursor-pointer 
+                                  transition-all duration-200 hover:scale-110 hover:z-10
+                                  bg-gradient-to-br ${getHeatColor(score)} ${getGlowColor(score)}
+                                  ${comp.name === "STG" ? "ring-1 ring-primary/30" : ""}
+                                `}
                               >
-                                <span className={getTextColor(score)}>{score}</span>
+                                <span className="text-white drop-shadow-sm">{score}</span>
                               </div>
                             </TooltipTrigger>
-                            <TooltipContent className="bg-popover border border-border">
-                              <p className="font-medium">{comp.name}</p>
-                              <p className="text-muted-foreground">{capabilities[colIndex]}: {score}/10</p>
+                            <TooltipContent className="bg-popover/95 backdrop-blur-sm border border-border/50">
+                              <div className="text-center">
+                                <p className="font-semibold text-foreground">{comp.name}</p>
+                                <p className="text-muted-foreground text-xs mt-0.5">
+                                  {capabilities[colIndex].full}
+                                </p>
+                                <p className="text-lg font-bold text-primary mt-1">{score}/10</p>
+                              </div>
                             </TooltipContent>
                           </Tooltip>
-                        </td>
+                        </div>
                       ))}
-                    </tr>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
             </TooltipProvider>
           </div>
         </CardContent>
