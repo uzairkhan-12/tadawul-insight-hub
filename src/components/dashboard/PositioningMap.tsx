@@ -144,9 +144,9 @@ const PositioningMap = () => {
                 Strategic Opportunities
               </h4>
               <ul className="text-sm text-muted-foreground space-y-1.5">
-                <li>• Regional hub for Sukuk and Islamic finance products</li>
-                <li>• Wamid expansion into fintech partnerships</li>
-                <li>• Retail engagement platform development</li>
+                <li>• East-West connector for capital flows</li>
+                <li>• Non-ADTV and data footprint expansion</li>
+                <li>• Product diversification</li>
                 <li>• MSCI/FTSE weight increases driving foreign flows</li>
               </ul>
             </div>
