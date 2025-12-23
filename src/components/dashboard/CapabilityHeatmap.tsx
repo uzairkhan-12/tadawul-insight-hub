@@ -22,8 +22,8 @@ const allCompetitors = [
   { name: "QSE", region: "gcc", scores: [4, 5, 3, 3, 5, 6, 4, 4, 5] },
   { name: "EGX", region: "mena", scores: [4, 4, 2, 2, 4, 5, 3, 4, 4] },
   { name: "BIST", region: "mena", scores: [5, 6, 4, 6, 5, 6, 5, 5, 5] },
-  { name: "NYSE", region: "global", scores: [10, 10, 10, 10, 10, 10, 10, 8, 10] },
-  { name: "LSE", region: "global", scores: [8, 8, 9, 9, 9, 9, 9, 7, 9] },
+  { name: "NYSE", region: "global", scores: [8, 10, 9, 10, 9, 9, 10, 7, 10] },
+  { name: "LSE", region: "global", scores: [3, 8, 9, 9, 9, 9, 9, 7, 9] },
   { name: "SGX", region: "global", scores: [7, 7, 8, 9, 8, 8, 8, 6, 8] },
 ];
 
