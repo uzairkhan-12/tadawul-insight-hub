@@ -15,9 +15,9 @@ const allCompetitors = [
   { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey" },
 ];
 
-// Function to get flag URL from country code (using 128px for higher resolution)
+// Function to get flag URL from country code (using flagcdn for higher resolution)
 const getFlagUrl = (countryCode: string) => 
-  `https://flagsapi.com/${countryCode.toUpperCase()}/flat/128.png`;
+  `https://flagcdn.com/w160/${countryCode.toLowerCase()}.png`;
 
 const PositioningMap = () => {
   const { regionFilter } = useDashboardFilter();
