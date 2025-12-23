@@ -46,7 +46,7 @@ const implications = {
       text: "Enhance Wamid data monetization capabilities", 
       category: "Technology",
       details: [
-        "Launch premium real-time data feeds for institutions",
+        "Continue developing DataHub offerings",
         "Develop AI-powered analytics products",
         "Create developer portal with sandbox environment",
         "Establish data partnerships with global vendors",
