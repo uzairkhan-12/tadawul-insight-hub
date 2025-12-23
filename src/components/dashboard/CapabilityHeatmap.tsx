@@ -11,21 +11,20 @@ const capabilities = [
   "CCP Services",
   "Settlement",
   "Market Data",
-  "API Platform",
   "Retail Apps",
   "Int'l Access",
 ];
 
 const allCompetitors = [
-  { name: "STG", region: "gcc", scores: [9, 6, 6, 5, 9, 8, 7, 8, 7, 7] },
-  { name: "ADX", region: "gcc", scores: [7, 7, 5, 4, 6, 7, 6, 5, 6, 7] },
-  { name: "DFM", region: "gcc", scores: [5, 5, 4, 3, 5, 6, 5, 4, 5, 6] },
-  { name: "QSE", region: "gcc", scores: [4, 5, 3, 3, 5, 6, 4, 4, 4, 5] },
-  { name: "EGX", region: "mena", scores: [4, 4, 2, 2, 4, 5, 3, 3, 4, 4] },
-  { name: "BIST", region: "mena", scores: [5, 6, 4, 6, 5, 6, 5, 5, 5, 5] },
-  { name: "NYSE", region: "global", scores: [10, 10, 10, 10, 10, 10, 10, 10, 8, 10] },
-  { name: "LSE", region: "global", scores: [8, 8, 9, 9, 9, 9, 9, 9, 7, 9] },
-  { name: "SGX", region: "global", scores: [7, 7, 8, 9, 8, 8, 8, 9, 6, 8] },
+  { name: "STG", region: "gcc", scores: [9, 6, 6, 5, 6, 8, 7, 7, 7] },
+  { name: "ADX", region: "gcc", scores: [7, 7, 5, 4, 6, 7, 6, 6, 7] },
+  { name: "DFM", region: "gcc", scores: [5, 5, 4, 3, 5, 6, 5, 5, 6] },
+  { name: "QSE", region: "gcc", scores: [4, 5, 3, 3, 5, 6, 4, 4, 5] },
+  { name: "EGX", region: "mena", scores: [4, 4, 2, 2, 4, 5, 3, 4, 4] },
+  { name: "BIST", region: "mena", scores: [5, 6, 4, 6, 5, 6, 5, 5, 5] },
+  { name: "NYSE", region: "global", scores: [10, 10, 10, 10, 10, 10, 10, 8, 10] },
+  { name: "LSE", region: "global", scores: [8, 8, 9, 9, 9, 9, 9, 7, 9] },
+  { name: "SGX", region: "global", scores: [7, 7, 8, 9, 8, 8, 8, 6, 8] },
 ];
 
 const getHeatColor = (score: number) => {
