@@ -3,16 +3,16 @@ import { Badge } from "@/components/ui/badge";
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 const allCompetitors = [
-  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const },
-  { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const },
-  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const },
-  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const },
-  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const },
-  { name: "NYSE", x: 95, y: 95, tier: 3, region: "global", size: "large" as const },
-  { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const },
-  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const },
-  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const },
-  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const },
+  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const, flag: "🇸🇦" },
+  { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const, flag: "🇦🇪" },
+  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, flag: "🇦🇪" },
+  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, flag: "🇶🇦" },
+  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const, flag: "🇰🇼" },
+  { name: "NYSE", x: 95, y: 95, tier: 3, region: "global", size: "large" as const, flag: "🇺🇸" },
+  { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const, flag: "🇬🇧" },
+  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const, flag: "🇸🇬" },
+  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const, flag: "🇪🇬" },
+  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const, flag: "🇹🇷" },
 ];
 
 const PositioningMap = () => {
@@ -84,19 +84,19 @@ const PositioningMap = () => {
                   }}
                 >
                   <div
-                    className={`rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+                    className={`rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${
                       comp.name === "STG"
-                        ? "bg-primary text-primary-foreground glow-gold"
+                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background glow-gold"
                         : comp.tier === 1
-                        ? "bg-primary/60 text-primary-foreground"
+                        ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background"
                         : comp.tier === 2
-                        ? "bg-success/70 text-success-foreground border-2 border-success"
-                        : "bg-info text-info-foreground border-2 border-info"
+                        ? "ring-2 ring-success ring-offset-1 ring-offset-background"
+                        : "ring-2 ring-info ring-offset-1 ring-offset-background"
                     } ${
-                      comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-9 h-9" : "w-7 h-7"
-                    }`}
+                      comp.size === "large" ? "w-12 h-12 text-2xl" : comp.size === "medium" ? "w-10 h-10 text-xl" : "w-8 h-8 text-lg"
+                    } bg-card`}
                   >
-                    {comp.name === "STG" ? "STG" : ""}
+                    {comp.flag}
                   </div>
                   <div className="absolute left-1/2 -translate-x-1/2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded whitespace-nowrap z-20 shadow-lg">
                     {comp.name}
