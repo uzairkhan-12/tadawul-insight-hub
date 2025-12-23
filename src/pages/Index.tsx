@@ -31,7 +31,7 @@ const Index = () => {
           <div className="container mx-auto px-6 py-6">
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <p>Saudi Tadawul Group Competitor Landscape Dashboard</p>
-              <p>Last Updated: December 2024</p>
+              <p>Last Updated: December 2025</p>
             </div>
           </div>
         </footer>
