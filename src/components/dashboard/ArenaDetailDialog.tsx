@@ -96,10 +96,9 @@ const competitorInsights: Record<number, { competitors: { name: string; position
   },
   5: {
     competitors: [
-      { name: "Real Estate Funds", position: "Alternative asset class", threat: "High" },
-      { name: "Cryptocurrency", position: "Digital assets", threat: "Very High" },
-      { name: "Gold & Commodities", position: "Traditional safe haven", threat: "Medium" },
-      { name: "Private Equity Access", position: "Alternative investments", threat: "Medium" },
+      { name: "Alternative Assets", position: "Real estate, crypto, gold, private equity", threat: "High" },
+      { name: "Robinhood/eToro models", position: "Neo-invest threat", threat: "Very High" },
+      { name: "Digital banks", position: "Emerging", threat: "High" },
     ],
     opportunities: [
       "Partner with neo-platforms for distribution",
@@ -108,8 +107,8 @@ const competitorInsights: Record<number, { competitors: { name: string; position
     ],
     risks: [
       "Alternative assets capturing retail wallet share",
-      "Digital assets attracting younger investors",
-      "Generational shift in investment preferences",
+      "Neo-invest apps attracting younger investors",
+      "Digital banks bundling investment products",
     ],
   },
 };
