@@ -91,7 +91,7 @@ const PositioningMap = () => {
                         ? "bg-primary/60 text-primary-foreground"
                         : comp.tier === 2
                         ? "bg-secondary/60 text-secondary-foreground"
-                        : "bg-muted text-foreground"
+                        : "bg-info text-info-foreground border-2 border-info"
                     } ${
                       comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-9 h-9" : "w-7 h-7"
                     }`}
