@@ -1,6 +1,7 @@
 import Header from "@/components/dashboard/Header";
 import FilterControls from "@/components/dashboard/FilterControls";
 import BusinessUnits from "@/components/dashboard/BusinessUnits";
+import ClientValueChain from "@/components/dashboard/ClientValueChain";
 import CompetitiveArenas from "@/components/dashboard/CompetitiveArenas";
 import PeerComparison from "@/components/dashboard/PeerComparison";
 import PositioningMap from "@/components/dashboard/PositioningMap";
@@ -18,6 +19,7 @@ const Index = () => {
         <main className="container mx-auto px-6 py-8 space-y-10">
           <FilterControls />
           <BusinessUnits />
+          <ClientValueChain />
           <CompetitiveArenas />
           <PeerComparison />
           <PositioningMap />
