@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 const allCompetitors = [
-  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
+  { name: "STG", x: 85, y: 68, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
   { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE" },
   { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
   { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
