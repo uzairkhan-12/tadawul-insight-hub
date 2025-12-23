@@ -1,26 +1,41 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
-const competitors = [
-  { name: "STG", x: 85, y: 75, tier: 1, size: "large" },
-  { name: "ADX", x: 70, y: 65, tier: 1, size: "medium" },
-  { name: "DFM", x: 55, y: 50, tier: 1, size: "small" },
-  { name: "QSE", x: 45, y: 60, tier: 1, size: "small" },
-  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, size: "small" },
-  { name: "NYSE", x: 95, y: 95, tier: 3, size: "large" },
-  { name: "LSE", x: 80, y: 85, tier: 3, size: "medium" },
-  { name: "SGX", x: 75, y: 70, tier: 3, size: "medium" },
-  { name: "EGX", x: 30, y: 35, tier: 2, size: "small" },
-  { name: "BIST", x: 50, y: 40, tier: 2, size: "medium" },
+const allCompetitors = [
+  { name: "STG", x: 85, y: 75, tier: 1, region: "gcc", size: "large" as const },
+  { name: "ADX", x: 70, y: 65, tier: 1, region: "gcc", size: "medium" as const },
+  { name: "DFM", x: 55, y: 50, tier: 1, region: "gcc", size: "small" as const },
+  { name: "QSE", x: 45, y: 60, tier: 1, region: "gcc", size: "small" as const },
+  { name: "Boursa Kuwait", x: 40, y: 45, tier: 1, region: "gcc", size: "small" as const },
+  { name: "NYSE", x: 95, y: 95, tier: 3, region: "global", size: "large" as const },
+  { name: "LSE", x: 80, y: 85, tier: 3, region: "global", size: "medium" as const },
+  { name: "SGX", x: 75, y: 70, tier: 3, region: "global", size: "medium" as const },
+  { name: "EGX", x: 30, y: 35, tier: 2, region: "mena", size: "small" as const },
+  { name: "BIST", x: 50, y: 40, tier: 2, region: "mena", size: "medium" as const },
 ];
 
 const PositioningMap = () => {
+  const { regionFilter } = useDashboardFilter();
+
+  const filteredCompetitors = allCompetitors.filter((comp) => {
+    if (regionFilter === "all") return true;
+    // Always show STG regardless of filter
+    if (comp.name === "STG") return true;
+    return comp.region === regionFilter;
+  });
+
   return (
     <section className="animate-slide-up" style={{ animationDelay: "0.4s" }}>
       <div className="flex items-center gap-3 mb-6">
         <div className="w-1 h-6 rounded-full bg-gradient-teal" />
         <h2 className="text-lg font-semibold text-foreground">Strategic Positioning Map</h2>
         <span className="text-sm text-muted-foreground">Market Scale vs. Innovation Capability</span>
+        {regionFilter !== "all" && (
+          <Badge variant="secondary" className="ml-2">
+            Filtered: {regionFilter.toUpperCase()}
+          </Badge>
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -59,7 +74,7 @@ const PositioningMap = () => {
               <div className="absolute bottom-8 right-3 text-xs text-muted-foreground/60 text-right">High Scale / High Tech</div>
 
               {/* Competitors */}
-              {competitors.map((comp) => (
+              {filteredCompetitors.map((comp) => (
                 <div
                   key={comp.name}
                   className={`absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-300 hover:z-10 hover:scale-110`}

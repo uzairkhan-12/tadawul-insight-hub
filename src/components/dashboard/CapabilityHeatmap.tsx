@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 const capabilities = [
   "IPO Pipeline",
@@ -15,14 +16,16 @@ const capabilities = [
   "Int'l Access",
 ];
 
-const competitors = [
-  { name: "STG", scores: [9, 8, 6, 5, 9, 8, 7, 8, 7, 7] },
-  { name: "ADX", scores: [7, 7, 5, 4, 6, 7, 6, 5, 6, 7] },
-  { name: "DFM", scores: [5, 5, 4, 3, 5, 6, 5, 4, 5, 6] },
-  { name: "QSE", scores: [4, 5, 3, 3, 5, 6, 4, 4, 4, 5] },
-  { name: "NYSE", scores: [10, 10, 10, 10, 10, 10, 10, 10, 8, 10] },
-  { name: "LSE", scores: [8, 8, 9, 9, 9, 9, 9, 9, 7, 9] },
-  { name: "SGX", scores: [7, 7, 8, 9, 8, 8, 8, 9, 6, 8] },
+const allCompetitors = [
+  { name: "STG", region: "gcc", scores: [9, 8, 6, 5, 9, 8, 7, 8, 7, 7] },
+  { name: "ADX", region: "gcc", scores: [7, 7, 5, 4, 6, 7, 6, 5, 6, 7] },
+  { name: "DFM", region: "gcc", scores: [5, 5, 4, 3, 5, 6, 5, 4, 5, 6] },
+  { name: "QSE", region: "gcc", scores: [4, 5, 3, 3, 5, 6, 4, 4, 4, 5] },
+  { name: "EGX", region: "mena", scores: [4, 4, 2, 2, 4, 5, 3, 3, 4, 4] },
+  { name: "BIST", region: "mena", scores: [5, 6, 4, 6, 5, 6, 5, 5, 5, 5] },
+  { name: "NYSE", region: "global", scores: [10, 10, 10, 10, 10, 10, 10, 10, 8, 10] },
+  { name: "LSE", region: "global", scores: [8, 8, 9, 9, 9, 9, 9, 9, 7, 9] },
+  { name: "SGX", region: "global", scores: [7, 7, 8, 9, 8, 8, 8, 9, 6, 8] },
 ];
 
 const getHeatColor = (score: number) => {
@@ -40,12 +43,26 @@ const getTextColor = (score: number) => {
 };
 
 const CapabilityHeatmap = () => {
+  const { regionFilter } = useDashboardFilter();
+
+  const filteredCompetitors = allCompetitors.filter((comp) => {
+    if (regionFilter === "all") return true;
+    // Always show STG regardless of filter
+    if (comp.name === "STG") return true;
+    return comp.region === regionFilter;
+  });
+
   return (
     <section className="animate-slide-up" style={{ animationDelay: "0.5s" }}>
       <div className="flex items-center gap-3 mb-6">
         <div className="w-1 h-6 rounded-full bg-gradient-gold" />
         <h2 className="text-lg font-semibold text-foreground">Capability Heatmap</h2>
         <span className="text-sm text-muted-foreground">Comparative Strength Analysis</span>
+        {regionFilter !== "all" && (
+          <Badge variant="secondary" className="ml-2">
+            Filtered: {regionFilter.toUpperCase()}
+          </Badge>
+        )}
       </div>
 
       <Card className="glass-card overflow-hidden">
@@ -87,7 +104,7 @@ const CapabilityHeatmap = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {competitors.map((comp, rowIndex) => (
+                  {filteredCompetitors.map((comp) => (
                     <tr 
                       key={comp.name}
                       className={`border-b border-border/50 ${comp.name === "STG" ? "bg-primary/5" : "hover:bg-muted/30"} transition-colors`}
