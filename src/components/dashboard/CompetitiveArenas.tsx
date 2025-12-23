@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Landmark, Cog, Wifi, PieChart, Smartphone, ChevronRight, CheckCircle2, AlertCircle, MinusCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import ArenaDetailDialog from "./ArenaDetailDialog";
 
 const arenas = [
   {
@@ -89,12 +91,6 @@ const getStatusIcon = (status: string) => {
   }
 };
 
-const getScoreColor = (score: number) => {
-  if (score >= 80) return "bg-success";
-  if (score >= 65) return "bg-warning";
-  return "bg-info";
-};
-
 const getThreatBadge = (threat: string) => {
   switch (threat) {
     case "Low":
@@ -111,6 +107,14 @@ const getThreatBadge = (threat: string) => {
 };
 
 const CompetitiveArenas = () => {
+  const [selectedArena, setSelectedArena] = useState<typeof arenas[0] | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleArenaClick = (arena: typeof arenas[0]) => {
+    setSelectedArena(arena);
+    setDialogOpen(true);
+  };
+
   return (
     <section className="animate-slide-up" style={{ animationDelay: "0.2s" }}>
       <div className="flex items-center justify-between mb-6">
@@ -125,8 +129,9 @@ const CompetitiveArenas = () => {
         {arenas.map((arena, index) => (
           <Card 
             key={arena.id}
-            className="glass-card hover:border-secondary/30 transition-all duration-300 group"
+            className="glass-card hover:border-secondary/30 transition-all duration-300 group cursor-pointer"
             style={{ animationDelay: `${index * 0.1}s` }}
+            onClick={() => handleArenaClick(arena)}
           >
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
@@ -175,6 +180,12 @@ const CompetitiveArenas = () => {
           </Card>
         ))}
       </div>
+
+      <ArenaDetailDialog 
+        arena={selectedArena} 
+        open={dialogOpen} 
+        onOpenChange={setDialogOpen} 
+      />
     </section>
   );
 };
