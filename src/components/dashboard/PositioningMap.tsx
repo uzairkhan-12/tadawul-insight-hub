@@ -1,22 +1,71 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useDashboardFilter } from "@/contexts/DashboardFilterContext";
 
 // Positions based on credible market data (2024):
-// Market Scale (Y-axis): NYSE $28T, LSE $3.5T, STG $2.7T, ADX $800B, SGX $700B, BIST $400B, DFM $200B, QSE $170B, Kuwait $150B, EGX $70B
-// Technology (X-axis): Based on digital infrastructure, API offerings, trading technology, innovation indices
 // Sources: World Federation of Exchanges, S&P Global, ATFX market research, WIPO Global Innovation Index 2024
 const allCompetitors = [
-  { name: "STG", x: 72, y: 62, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia" },
-  { name: "ADX", x: 65, y: 48, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE" },
-  { name: "DFM", x: 55, y: 38, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE" },
-  { name: "QSE", x: 52, y: 36, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar" },
-  { name: "Boursa Kuwait", x: 45, y: 34, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait" },
-  { name: "NYSE", x: 88, y: 85, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA" },
-  { name: "LSE", x: 82, y: 72, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK" },
-  { name: "SGX", x: 88, y: 46, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore" },
-  { name: "EGX", x: 35, y: 25, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt" },
-  { name: "BIST", x: 58, y: 42, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey" },
+  { 
+    name: "STG", x: 72, y: 62, tier: 1, region: "gcc", size: "large" as const, country: "SA", countryName: "Saudi Arabia",
+    marketCap: "$2.7T", techScore: "72/100",
+    marketNotes: "Largest in MENA, 463% growth over 10 years (S&P 2024)",
+    techNotes: "Modernizing with Vision 2030, integrated infrastructure"
+  },
+  { 
+    name: "ADX", x: 65, y: 48, tier: 1, region: "gcc", size: "medium" as const, country: "AE", countryName: "UAE",
+    marketCap: "$800B", techScore: "65/100",
+    marketNotes: "Second largest GCC exchange",
+    techNotes: "Strong digital trading platform, growing derivatives"
+  },
+  { 
+    name: "DFM", x: 55, y: 38, tier: 1, region: "gcc", size: "small" as const, country: "AE", countryName: "UAE",
+    marketCap: "$200B", techScore: "55/100",
+    marketNotes: "Focused on real estate and financial services",
+    techNotes: "Basic digital infrastructure, developing API ecosystem"
+  },
+  { 
+    name: "QSE", x: 52, y: 36, tier: 1, region: "gcc", size: "small" as const, country: "QA", countryName: "Qatar",
+    marketCap: "$170B", techScore: "52/100",
+    marketNotes: "Premium listings, sovereign wealth support",
+    techNotes: "Modernizing post-FIFA 2022 infrastructure investments"
+  },
+  { 
+    name: "Boursa Kuwait", x: 45, y: 34, tier: 1, region: "gcc", size: "small" as const, country: "KW", countryName: "Kuwait",
+    marketCap: "$150B", techScore: "45/100",
+    marketNotes: "Traditional market, banking sector heavy",
+    techNotes: "Upgrading systems, MSCI upgrade catalyst"
+  },
+  { 
+    name: "NYSE", x: 88, y: 85, tier: 3, region: "global", size: "large" as const, country: "US", countryName: "USA",
+    marketCap: "$28T", techScore: "88/100",
+    marketNotes: "World's largest by market cap (WFE 2024)",
+    techNotes: "Leading trading technology, extensive API ecosystem"
+  },
+  { 
+    name: "LSE", x: 82, y: 72, tier: 3, region: "global", size: "medium" as const, country: "GB", countryName: "UK",
+    marketCap: "$3.5T", techScore: "82/100",
+    marketNotes: "Europe's largest, global benchmark (ATFX 2024)",
+    techNotes: "Strong data services, LSEG technology arm"
+  },
+  { 
+    name: "SGX", x: 88, y: 46, tier: 3, region: "global", size: "medium" as const, country: "SG", countryName: "Singapore",
+    marketCap: "$700B", techScore: "88/100",
+    marketNotes: "Asia-Pacific hub, derivatives focus",
+    techNotes: "Singapore ranked 4th Global Innovation Index (WIPO 2024)"
+  },
+  { 
+    name: "EGX", x: 35, y: 25, tier: 2, region: "mena", size: "small" as const, country: "EG", countryName: "Egypt",
+    marketCap: "$70B", techScore: "35/100",
+    marketNotes: "Largest in North Africa, privatization pipeline",
+    techNotes: "Legacy systems, gradual digital transformation"
+  },
+  { 
+    name: "BIST", x: 58, y: 42, tier: 2, region: "mena", size: "medium" as const, country: "TR", countryName: "Turkey",
+    marketCap: "$400B", techScore: "58/100",
+    marketNotes: "Dynamic retail participation, volatility",
+    techNotes: "Modern trading platform, strong local tech ecosystem"
+  },
 ];
 
 // Function to get flag URL from country code (SVG for crisp rendering)
@@ -59,64 +108,95 @@ const PositioningMap = () => {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="relative w-full aspect-square bg-muted/30 rounded-lg border border-border overflow-hidden">
-              {/* Grid lines */}
-              <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
-                {[...Array(16)].map((_, i) => (
-                  <div key={i} className="border border-border/30" />
+            <TooltipProvider>
+              <div className="relative w-full aspect-square bg-muted/30 rounded-lg border border-border overflow-hidden">
+                {/* Grid lines */}
+                <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
+                  {[...Array(16)].map((_, i) => (
+                    <div key={i} className="border border-border/30" />
+                  ))}
+                </div>
+                
+                {/* Axis labels */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-muted-foreground">
+                  Technology & Innovation →
+                </div>
+                <div className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-muted-foreground">
+                  Market Scale →
+                </div>
+                
+                {/* Quadrant labels */}
+                <div className="absolute top-3 left-3 text-xs text-muted-foreground/60">Low Scale / Low Tech</div>
+                <div className="absolute top-3 right-3 text-xs text-muted-foreground/60 text-right">Low Scale / High Tech</div>
+                <div className="absolute bottom-8 left-3 text-xs text-muted-foreground/60">High Scale / Low Tech</div>
+                <div className="absolute bottom-8 right-3 text-xs text-muted-foreground/60 text-right">High Scale / High Tech</div>
+
+                {/* Competitors */}
+                {filteredCompetitors.map((comp) => (
+                  <Tooltip key={comp.name}>
+                    <TooltipTrigger asChild>
+                      <div
+                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:z-10 hover:scale-110`}
+                        style={{
+                          left: `${comp.x}%`,
+                          bottom: `${comp.y}%`,
+                        }}
+                      >
+                        <div
+                          className={`rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-lg ${
+                            comp.name === "STG"
+                              ? "ring-3 ring-primary ring-offset-2 ring-offset-background glow-gold"
+                              : comp.tier === 1
+                              ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background"
+                              : comp.tier === 2
+                              ? "ring-2 ring-secondary ring-offset-1 ring-offset-background"
+                              : "ring-2 ring-muted-foreground/50 ring-offset-1 ring-offset-background"
+                          } ${
+                            comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-10 h-10" : "w-8 h-8"
+                          } bg-card`}
+                        >
+                          <img 
+                            src={getFlagUrl(comp.country)} 
+                            alt={comp.countryName}
+                            className="w-full h-full object-contain p-1"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent 
+                      side="top" 
+                      className="max-w-xs bg-popover/95 backdrop-blur-sm border border-border p-3"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 border-b border-border/50 pb-2">
+                          <span className="font-bold text-foreground">{comp.name}</span>
+                          <span className="text-xs text-muted-foreground">({comp.countryName})</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+                          <div>
+                            <p className="text-muted-foreground">Market Cap</p>
+                            <p className="font-semibold text-primary">{comp.marketCap}</p>
+                          </div>
+                          <div>
+                            <p className="text-muted-foreground">Tech Score</p>
+                            <p className="font-semibold text-secondary">{comp.techScore}</p>
+                          </div>
+                        </div>
+                        <div className="space-y-1 pt-1 border-t border-border/50 text-xs">
+                          <p className="text-muted-foreground">
+                            <span className="text-primary">Scale:</span> {comp.marketNotes}
+                          </p>
+                          <p className="text-muted-foreground">
+                            <span className="text-secondary">Tech:</span> {comp.techNotes}
+                          </p>
+                        </div>
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
                 ))}
               </div>
-              
-              {/* Axis labels */}
-              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-xs text-muted-foreground">
-                Technology & Innovation →
-              </div>
-              <div className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs text-muted-foreground">
-                Market Scale →
-              </div>
-              
-              {/* Quadrant labels */}
-              <div className="absolute top-3 left-3 text-xs text-muted-foreground/60">Low Scale / Low Tech</div>
-              <div className="absolute top-3 right-3 text-xs text-muted-foreground/60 text-right">Low Scale / High Tech</div>
-              <div className="absolute bottom-8 left-3 text-xs text-muted-foreground/60">High Scale / Low Tech</div>
-              <div className="absolute bottom-8 right-3 text-xs text-muted-foreground/60 text-right">High Scale / High Tech</div>
-
-              {/* Competitors */}
-              {filteredCompetitors.map((comp) => (
-                <div
-                  key={comp.name}
-                  className={`absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer transition-all duration-300 hover:z-10 hover:scale-110`}
-                  style={{
-                    left: `${comp.x}%`,
-                    bottom: `${comp.y}%`,
-                  }}
-                >
-                  <div
-                    className={`rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 shadow-lg ${
-                      comp.name === "STG"
-                        ? "ring-3 ring-primary ring-offset-2 ring-offset-background glow-gold"
-                        : comp.tier === 1
-                        ? "ring-2 ring-primary/60 ring-offset-1 ring-offset-background"
-                        : comp.tier === 2
-                        ? "ring-2 ring-secondary ring-offset-1 ring-offset-background"
-                        : "ring-2 ring-muted-foreground/50 ring-offset-1 ring-offset-background"
-                    } ${
-                      comp.size === "large" ? "w-12 h-12" : comp.size === "medium" ? "w-10 h-10" : "w-8 h-8"
-                    } bg-card`}
-                  >
-                    <img 
-                      src={getFlagUrl(comp.country)} 
-                      alt={comp.countryName}
-                      className="w-full h-full object-contain p-1"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 mt-1 opacity-0 group-hover:opacity-100 transition-opacity bg-popover text-popover-foreground text-xs px-2 py-1 rounded whitespace-nowrap z-20 shadow-lg">
-                    {comp.name}
-                  </div>
-                </div>
-              ))}
-            </div>
+            </TooltipProvider>
           </CardContent>
         </Card>
 
