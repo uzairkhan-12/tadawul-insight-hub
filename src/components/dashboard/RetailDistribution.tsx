@@ -5,47 +5,46 @@ import { Progress } from "@/components/ui/progress";
 
 const platforms = [
   {
-    category: "KSA-Native Trading Apps",
-    description: "Direct Tadawul participation platforms",
-    icon: Smartphone,
-    color: "primary",
-    players: [
-      { name: "SNB Capital", type: "Bank Brokerage", marketShare: 28, rating: 4.2 },
-      { name: "Al Rajhi Capital", type: "Bank Brokerage", marketShare: 24, rating: 4.4 },
-      { name: "Derayah", type: "Independent App", marketShare: 15, rating: 4.6 },
-      { name: "Riyad Capital", type: "Bank Brokerage", marketShare: 12, rating: 4.0 },
-    ],
-  },
-  {
     category: "GCC Neo-Invest Platforms",
-    description: "International market access providers",
+    description: "International market access providers competing for retail flows",
     icon: CreditCard,
     color: "secondary",
     players: [
-      { name: "Sarwa", type: "UAE Robo-Advisor", marketShare: 8, rating: 4.5 },
-      { name: "Wealthfront ME", type: "US Platform", marketShare: 5, rating: 4.3 },
-      { name: "Baraka", type: "UAE Fintech", marketShare: 4, rating: 4.7 },
-      { name: "Interactive Brokers", type: "Global Platform", marketShare: 4, rating: 4.1 },
+      { name: "Sarwa", type: "UAE Robo-Advisor", threat: "High", rating: 4.5 },
+      { name: "Baraka", type: "UAE Fintech", threat: "High", rating: 4.7 },
+      { name: "Interactive Brokers", type: "Global Platform", threat: "Medium", rating: 4.1 },
+      { name: "eToro", type: "Global Social Trading", threat: "Medium", rating: 4.3 },
     ],
   },
   {
     category: "Digital Banking Platforms",
-    description: "Integrated banking & investment services",
+    description: "Banks bundling investment products into digital offerings",
     icon: Landmark,
     color: "info",
     players: [
-      { name: "STC Pay Invest", type: "Digital Bank", marketShare: 6, rating: 4.3 },
-      { name: "Alinma Invest", type: "Bank Digital", marketShare: 5, rating: 4.1 },
-      { name: "SABB Markets", type: "Bank Digital", marketShare: 4, rating: 3.9 },
+      { name: "STC Pay Invest", type: "Digital Wallet", threat: "High", rating: 4.3 },
+      { name: "Revolut", type: "Neobank", threat: "Medium", rating: 4.4 },
+      { name: "Wise", type: "Fintech", threat: "Low", rating: 4.2 },
+    ],
+  },
+  {
+    category: "Global Trading Apps",
+    description: "International apps targeting KSA retail investors",
+    icon: Smartphone,
+    color: "danger",
+    players: [
+      { name: "Robinhood Model Clones", type: "Commission-Free", threat: "High", rating: 4.0 },
+      { name: "Webull", type: "US Platform", threat: "Medium", rating: 4.2 },
+      { name: "Trading 212", type: "UK Platform", threat: "Medium", rating: 4.1 },
     ],
   },
 ];
 
 const competitiveFactors = [
-  { name: "Onboarding & KYC Speed", icon: Clock, stg: 75, best: 95, leader: "Derayah" },
-  { name: "Funding Rails", icon: CreditCard, stg: 85, best: 90, leader: "Al Rajhi" },
+  { name: "Onboarding & KYC Speed", icon: Clock, stg: 75, best: 95, leader: "Baraka" },
+  { name: "Funding Rails", icon: CreditCard, stg: 85, best: 90, leader: "Sarwa" },
   { name: "Product Packaging", icon: Sparkles, stg: 60, best: 85, leader: "Baraka" },
-  { name: "Engagement Features", icon: Users, stg: 55, best: 90, leader: "Sarwa" },
+  { name: "Engagement Features", icon: Users, stg: 55, best: 90, leader: "eToro" },
   { name: "Shariah Compliance", icon: Shield, stg: 95, best: 95, leader: "STG (via partners)" },
 ];
 
@@ -64,9 +63,9 @@ const RetailDistribution = () => {
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3">
                 <div className={`p-2.5 rounded-lg ${
-                  platform.color === "primary" ? "bg-primary/20 text-primary" :
                   platform.color === "secondary" ? "bg-secondary/20 text-secondary" :
-                  "bg-info/20 text-info"
+                  platform.color === "info" ? "bg-info/20 text-info" :
+                  "bg-danger/20 text-danger"
                 }`}>
                   <platform.icon className="w-5 h-5" />
                 </div>
@@ -85,8 +84,10 @@ const RetailDistribution = () => {
                       <p className="text-xs text-muted-foreground">{player.type}</p>
                     </div>
                     <div className="text-right">
-                      <p className="font-mono text-sm text-foreground">{player.marketShare}%</p>
-                      <div className="flex items-center gap-1">
+                      <Badge variant={player.threat === "High" ? "danger" : player.threat === "Medium" ? "warning" : "success"} className="text-xs">
+                        {player.threat} Threat
+                      </Badge>
+                      <div className="flex items-center gap-1 mt-1">
                         {[...Array(5)].map((_, i) => (
                           <div
                             key={i}
@@ -95,7 +96,6 @@ const RetailDistribution = () => {
                             }`}
                           />
                         ))}
-                        <span className="text-xs text-muted-foreground ml-1">{player.rating}</span>
                       </div>
                     </div>
                   </div>
