@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Header from "@/components/dashboard/Header";
 import FilterControls from "@/components/dashboard/FilterControls";
 import BusinessUnits from "@/components/dashboard/BusinessUnits";
@@ -8,9 +9,23 @@ import PositioningMap from "@/components/dashboard/PositioningMap";
 import CapabilityHeatmap from "@/components/dashboard/CapabilityHeatmap";
 import RetailDistribution from "@/components/dashboard/RetailDistribution";
 import StrategicImplications from "@/components/dashboard/StrategicImplications";
+import PasscodeScreen from "@/components/dashboard/PasscodeScreen";
 import { DashboardFilterProvider } from "@/contexts/DashboardFilterContext";
 
 const Index = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const authenticated = sessionStorage.getItem("dashboard_authenticated");
+    if (authenticated === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  if (!isAuthenticated) {
+    return <PasscodeScreen onSuccess={() => setIsAuthenticated(true)} />;
+  }
+
   return (
     <DashboardFilterProvider>
       <div className="min-h-screen bg-background">
