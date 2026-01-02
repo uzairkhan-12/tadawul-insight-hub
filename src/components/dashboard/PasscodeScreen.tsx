@@ -34,7 +34,7 @@ const PasscodeScreen = ({ onSuccess }: PasscodeScreenProps) => {
               <Lock className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-bold text-foreground">
-              Saudi Tadawul Group
+              SDB
             </h1>
             <p className="text-muted-foreground mt-2 text-center">
               Competitor Landscape Dashboard
