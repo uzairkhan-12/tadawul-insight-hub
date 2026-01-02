@@ -47,7 +47,7 @@ const Index = () => {
         <footer className="border-t border-border/50 mt-16">
           <div className="container mx-auto px-6 py-6">
             <div className="flex items-center justify-between text-sm text-muted-foreground">
-              <p>SDB Landscape Dashboard</p>
+              <p>STG Landscape Dashboard</p>
               <p>Last Updated: December 2025</p>
             </div>
           </div>
