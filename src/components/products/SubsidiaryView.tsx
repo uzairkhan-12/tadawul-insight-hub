@@ -2,7 +2,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getSubsidiaryById, getProductsBySubsidiary } from "@/data/productsData";
 import ProductCard from "./ProductCard";
-import { Building2, Users } from "lucide-react";
+import { Users } from "lucide-react";
+import logoSaudiExchange from "@/assets/logo-saudi-exchange.png";
+import logoEdaa from "@/assets/logo-edaa.png";
+import logoWamid from "@/assets/logo-wamid.png";
+
+const subsidiaryLogos: Record<string, string> = {
+  "saudi-exchange": logoSaudiExchange,
+  "edaa": logoEdaa,
+  "wamid": logoWamid,
+};
 
 interface SubsidiaryViewProps {
   subsidiaryId: string;
@@ -24,8 +33,12 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
       <Card>
         <CardHeader>
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Building2 className="w-7 h-7 text-primary" />
+            <div className="w-16 h-16 rounded-xl bg-background border border-border/50 flex items-center justify-center overflow-hidden p-1">
+              {subsidiaryLogos[subsidiaryId] ? (
+                <img src={subsidiaryLogos[subsidiaryId]} alt={subsidiary.name} className="w-full h-full object-contain" />
+              ) : (
+                <span className="text-lg font-bold text-muted-foreground">{subsidiary.name[0]}</span>
+              )}
             </div>
             <div>
               <CardTitle className="text-xl">{subsidiary.name}</CardTitle>
