@@ -50,13 +50,6 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
             <p className="text-xs text-muted-foreground">Total Products</p>
           </CardContent>
         </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
-            <Building2 className="w-8 h-8 mx-auto text-secondary mb-2" />
-            <p className="text-2xl font-bold text-foreground">{subsidiaries.length}</p>
-            <p className="text-xs text-muted-foreground">Subsidiaries</p>
-          </CardContent>
-        </Card>
         <Card className="border-success/30">
           <CardContent className="p-4 text-center">
             <CheckCircle2 className="w-8 h-8 mx-auto text-success mb-2" />
