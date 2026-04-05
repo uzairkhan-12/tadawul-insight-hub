@@ -2,7 +2,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getSubsidiaryById, getProductsBySubsidiary } from "@/data/productsData";
 import ProductCard from "./ProductCard";
-import { Building2, Users } from "lucide-react";
+import { Users } from "lucide-react";
+import logoSaudiExchange from "@/assets/logo-saudi-exchange.png";
+import logoEdaa from "@/assets/logo-edaa.png";
+import logoWamid from "@/assets/logo-wamid.png";
+
+const subsidiaryLogos: Record<string, string> = {
+  "saudi-exchange": logoSaudiExchange,
+  "edaa": logoEdaa,
+  "wamid": logoWamid,
+};
 
 interface SubsidiaryViewProps {
   subsidiaryId: string;
