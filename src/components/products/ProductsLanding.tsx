@@ -42,19 +42,12 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
       </Card>
 
       {/* Quick Snapshot */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <Card>
           <CardContent className="p-4 text-center">
             <Package className="w-8 h-8 mx-auto text-primary mb-2" />
             <p className="text-2xl font-bold text-foreground">{stats.total}</p>
             <p className="text-xs text-muted-foreground">Total Products</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardContent className="p-4 text-center">
-            <Building2 className="w-8 h-8 mx-auto text-secondary mb-2" />
-            <p className="text-2xl font-bold text-foreground">{subsidiaries.length}</p>
-            <p className="text-xs text-muted-foreground">Subsidiaries</p>
           </CardContent>
         </Card>
         <Card className="border-success/30">
