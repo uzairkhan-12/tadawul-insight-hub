@@ -2,7 +2,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import type { Subsidiary } from "@/data/productsData";
 import { getProductsBySubsidiary } from "@/data/productsData";
-import { Building2, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import logoSaudiExchange from "@/assets/logo-saudi-exchange.png";
+import logoEdaa from "@/assets/logo-edaa.png";
+import logoWamid from "@/assets/logo-wamid.png";
+
+const subsidiaryLogos: Record<string, string> = {
+  "saudi-exchange": logoSaudiExchange,
+  "edaa": logoEdaa,
+  "wamid": logoWamid,
+};
 
 interface SubsidiaryCardProps {
   subsidiary: Subsidiary;
@@ -13,6 +22,7 @@ const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
   const products = getProductsBySubsidiary(subsidiary.name);
   const needAction = products.filter(p => p.finalCall === "Need an Action").length;
   const keepAnEye = products.filter(p => p.finalCall === "Keep an Eye").length;
+  const logo = subsidiaryLogos[subsidiary.id];
 
   return (
     <Card
@@ -21,8 +31,12 @@ const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
     >
       <CardContent className="p-6">
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-            <Building2 className="w-6 h-6 text-primary" />
+          <div className="w-14 h-14 rounded-xl bg-background border border-border/50 flex items-center justify-center shrink-0 overflow-hidden p-1">
+            {logo ? (
+              <img src={logo} alt={subsidiary.name} className="w-full h-full object-contain" loading="lazy" />
+            ) : (
+              <span className="text-xs font-bold text-muted-foreground">{subsidiary.name[0]}</span>
+            )}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between">
