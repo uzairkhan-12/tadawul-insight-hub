@@ -1,8 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getProductById } from "@/data/productsData";
+import { getProductAnalysis, type AnalysisDimension, type RagRating } from "@/data/productAnalysis";
+import { competitorBrands, getCompetitorBrandKey } from "@/data/competitorBrands";
 import { Separator } from "@/components/ui/separator";
-import { Shield, Swords, BarChart3, FileText, ExternalLink, AlertTriangle, CheckCircle2, Eye } from "lucide-react";
+import { Shield, Swords, BarChart3, FileText, ExternalLink, AlertTriangle, CheckCircle2, Eye, TrendingUp, Target, DollarSign, Lock, Users, Gauge } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 interface ProductDetailProps {
   productId: string;
@@ -35,9 +38,80 @@ const finalCallBg = (call: string) => {
   }
 };
 
+const ragVariant = (rating: RagRating) => {
+  switch (rating) {
+    case "Green": return "success";
+    case "Amber": return "warning";
+    case "Red": return "danger";
+  }
+};
+
+const ragLabel = (rating: RagRating) => {
+  switch (rating) {
+    case "Green": return "Green";
+    case "Amber": return "Amber";
+    case "Red": return "Red";
+  }
+};
+
+const dimensionIcon = (dimension: string) => {
+  if (dimension.includes("Competition")) return <Swords className="w-4 h-4" />;
+  if (dimension.includes("TAM")) return <Target className="w-4 h-4" />;
+  if (dimension.includes("Market Share")) return <BarChart3 className="w-4 h-4" />;
+  if (dimension.includes("Trend")) return <TrendingUp className="w-4 h-4" />;
+  if (dimension.includes("Barriers")) return <Lock className="w-4 h-4" />;
+  if (dimension.includes("Price")) return <DollarSign className="w-4 h-4" />;
+  if (dimension.includes("Positioning")) return <Gauge className="w-4 h-4" />;
+  return <BarChart3 className="w-4 h-4" />;
+};
+
+const CompetitorLogo = ({ name, desc }: { name: string; desc: string }) => {
+  const brandKey = getCompetitorBrandKey(desc);
+  const brand = brandKey ? competitorBrands[brandKey] : null;
+
+  if (!brand) {
+    const initials = name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+    return (
+      <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center shrink-0">
+        <span className="text-xs font-bold text-muted-foreground">{initials}</span>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+      style={{ backgroundColor: brand.color, color: brand.textColor }}
+    >
+      <span className="text-xs font-bold">{brand.shortName}</span>
+    </div>
+  );
+};
+
+const AnalysisDimensionRow = ({ dim }: { dim: AnalysisDimension }) => (
+  <TableRow>
+    <TableCell className="font-medium">
+      <div className="flex items-center gap-2">
+        {dimensionIcon(dim.dimension)}
+        <span className="text-sm">{dim.dimension}</span>
+      </div>
+    </TableCell>
+    <TableCell>
+      <Badge variant={ragVariant(dim.rating) as any} className="text-xs">
+        {ragLabel(dim.rating)}
+      </Badge>
+    </TableCell>
+    <TableCell className="text-sm text-muted-foreground max-w-md">{dim.description}</TableCell>
+    <TableCell className="text-sm text-muted-foreground max-w-xs">{dim.stgPosition || "—"}</TableCell>
+  </TableRow>
+);
+
 const ProductDetail = ({ productId }: ProductDetailProps) => {
   const product = getProductById(productId);
+  const analysis = getProductAnalysis(productId);
   if (!product) return <p className="text-muted-foreground">Product not found.</p>;
+
+  const allCompetitors = [...product.directCompetitors, ...product.indirectCompetitors];
 
   return (
     <div className="space-y-6">
@@ -85,7 +159,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         </CardContent>
       </Card>
 
-      {/* Competitors */}
+      {/* Competitors with Logos */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
@@ -96,34 +170,50 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         <CardContent className="space-y-4">
           {product.directCompetitors.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-foreground mb-2">Direct Competitors</h4>
-              <ul className="space-y-1.5">
-                {product.directCompetitors.map((comp, i) => (
-                  <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-danger mt-1.5 shrink-0" />
-                    {comp}
-                  </li>
-                ))}
-              </ul>
+              <h4 className="text-sm font-semibold text-foreground mb-3">Direct Competitors</h4>
+              <div className="space-y-3">
+                {product.directCompetitors.map((comp, i) => {
+                  const name = comp.split(" – ")[0].split(" — ")[0].trim();
+                  const detail = comp.includes(" – ") ? comp.split(" – ").slice(1).join(" – ") : 
+                                 comp.includes(" — ") ? comp.split(" — ").slice(1).join(" — ") : "";
+                  return (
+                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 border border-border/50">
+                      <CompetitorLogo name={name} desc={comp} />
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium text-foreground">{name}</p>
+                        {detail && <p className="text-xs text-muted-foreground mt-0.5">{detail}</p>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
           {product.indirectCompetitors.length > 0 && (
             <>
               <Separator />
               <div>
-                <h4 className="text-sm font-semibold text-foreground mb-2">Indirect Competitors</h4>
-                <ul className="space-y-1.5">
-                  {product.indirectCompetitors.map((comp, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-warning mt-1.5 shrink-0" />
-                      {comp}
-                    </li>
-                  ))}
-                </ul>
+                <h4 className="text-sm font-semibold text-foreground mb-3">Indirect Competitors</h4>
+                <div className="space-y-3">
+                  {product.indirectCompetitors.map((comp, i) => {
+                    const name = comp.split(" – ")[0].split(" — ")[0].trim();
+                    const detail = comp.includes(" – ") ? comp.split(" – ").slice(1).join(" – ") : 
+                                   comp.includes(" — ") ? comp.split(" — ").slice(1).join(" — ") : "";
+                    return (
+                      <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 border border-border/50">
+                        <CompetitorLogo name={name} desc={comp} />
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-foreground">{name}</p>
+                          {detail && <p className="text-xs text-muted-foreground mt-0.5">{detail}</p>}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </>
           )}
-          {product.directCompetitors.length === 0 && product.indirectCompetitors.length === 0 && (
+          {allCompetitors.length === 0 && (
             <p className="text-sm text-muted-foreground">No direct or indirect competitors identified.</p>
           )}
         </CardContent>
@@ -134,7 +224,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         <CardHeader>
           <CardTitle className="text-base flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
-            Analysis
+            Competition Analysis
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -150,6 +240,49 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Detailed Analysis (RAG per dimension) */}
+      {analysis && (
+        <Card>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-base flex items-center gap-2">
+                <Gauge className="w-4 h-4 text-primary" />
+                Detailed Analysis
+              </CardTitle>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Overall:</span>
+                <Badge variant={ragVariant(analysis.overallRag) as any} className="text-sm px-3 py-1">
+                  {ragLabel(analysis.overallRag)}
+                </Badge>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[180px]">Dimension</TableHead>
+                    <TableHead className="w-[80px]">RAG</TableHead>
+                    <TableHead>Assessment</TableHead>
+                    <TableHead className="w-[200px]">STG Positioning</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <AnalysisDimensionRow dim={analysis.levelOfCompetition} />
+                  <AnalysisDimensionRow dim={analysis.tam} />
+                  <AnalysisDimensionRow dim={analysis.currentMarketShare} />
+                  <AnalysisDimensionRow dim={analysis.productTrend} />
+                  <AnalysisDimensionRow dim={analysis.barriersToEntry} />
+                  <AnalysisDimensionRow dim={analysis.priceSensitivity} />
+                  <AnalysisDimensionRow dim={analysis.positioningVsCompetitors} />
+                </TableBody>
+              </Table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Final Call */}
       <Card className={`border ${finalCallBg(product.finalCall)}`}>
