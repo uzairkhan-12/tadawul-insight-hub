@@ -33,8 +33,12 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
       <Card>
         <CardHeader>
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-              <Building2 className="w-7 h-7 text-primary" />
+            <div className="w-16 h-16 rounded-xl bg-background border border-border/50 flex items-center justify-center overflow-hidden p-1">
+              {subsidiaryLogos[subsidiaryId] ? (
+                <img src={subsidiaryLogos[subsidiaryId]} alt={subsidiary.name} className="w-full h-full object-contain" />
+              ) : (
+                <span className="text-lg font-bold text-muted-foreground">{subsidiary.name[0]}</span>
+              )}
             </div>
             <div>
               <CardTitle className="text-xl">{subsidiary.name}</CardTitle>
