@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import logoSaudiExchange from "@/assets/logo-saudi-exchange.png";
 import logoEdaa from "@/assets/logo-edaa.png";
 import logoWamid from "@/assets/logo-wamid.png";
+import logoMuqassa from "@/assets/logo-muqassa.png";
 
 const units = [
   {
@@ -12,7 +13,7 @@ const units = [
   {
     name: "Muqassa",
     description: "Central counterparty clearing",
-    logo: null,
+    logo: logoMuqassa,
   },
   {
     name: "Edaa",
