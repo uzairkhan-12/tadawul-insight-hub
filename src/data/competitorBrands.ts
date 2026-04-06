@@ -10,7 +10,7 @@ export interface CompetitorBrand {
 export const competitorBrands: Record<string, CompetitorBrand> = {
   "Bloomberg": { name: "Bloomberg", shortName: "BB", color: "#F58025", textColor: "#fff", logo: "/images/logo-bloomberg.png" },
   "LSEG": { name: "LSEG/Refinitiv", shortName: "LS", color: "#003B5C", textColor: "#fff", logo: "/images/logo-lseg.png" },
-  "ICE": { name: "ICE", shortName: "ICE", color: "#0033A0", textColor: "#fff" },
+  "ICE": { name: "ICE", shortName: "ICE", color: "#0033A0", textColor: "#fff", logo: "/images/logo-ice.png" },
   "FactSet": { name: "FactSet", shortName: "FS", color: "#D32F2F", textColor: "#fff" },
   "MSCI": { name: "MSCI", shortName: "MS", color: "#002855", textColor: "#fff" },
   "FTSE Russell": { name: "FTSE Russell", shortName: "FT", color: "#00695C", textColor: "#fff" },
