@@ -13,7 +13,7 @@ export const competitorBrands: Record<string, CompetitorBrand> = {
   "ICE": { name: "ICE", shortName: "ICE", color: "#0033A0", textColor: "#fff", logo: "/images/logo-ice.png" },
   "FactSet": { name: "FactSet", shortName: "FS", color: "#D32F2F", textColor: "#fff", logo: "/images/logo-factset.png" },
   "MSCI": { name: "MSCI", shortName: "MS", color: "#002855", textColor: "#fff", logo: "/images/logo-msci.png" },
-  "FTSE Russell": { name: "FTSE Russell", shortName: "FT", color: "#00695C", textColor: "#fff" },
+  "FTSE Russell": { name: "FTSE Russell", shortName: "FT", color: "#00695C", textColor: "#fff", logo: "/images/logo-ftse.png" },
   "S&P": { name: "S&P Global / DJI", shortName: "SP", color: "#E31837", textColor: "#fff" },
   "Sukuk Capital": { name: "Sukuk Capital", shortName: "SK", color: "#1B5E20", textColor: "#fff", logo: "/images/logo-sukuk.png" },
   "Dinar": { name: "Dinar Investment", shortName: "DI", color: "#4E342E", textColor: "#fff", logo: "/images/logo-dinar.png" },
