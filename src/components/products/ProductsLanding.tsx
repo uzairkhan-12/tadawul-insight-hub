@@ -50,18 +50,18 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
             <p className="text-xs text-muted-foreground">Needs Action</p>
           </CardContent>
         </Card>
-        <Card className="border-success/30">
-          <CardContent className="p-4 text-center">
-            <CheckCircle2 className="w-8 h-8 mx-auto text-success mb-2" />
-            <p className="text-2xl font-bold text-foreground">{stats.notRequired}</p>
-            <p className="text-xs text-muted-foreground">Steady Outlook</p>
-          </CardContent>
-        </Card>
         <Card className="border-warning/30">
           <CardContent className="p-4 text-center">
             <Eye className="w-8 h-8 mx-auto text-warning mb-2" />
             <p className="text-2xl font-bold text-foreground">{stats.keepAnEye}</p>
             <p className="text-xs text-muted-foreground">Stay Close</p>
+          </CardContent>
+        </Card>
+        <Card className="border-success/30">
+          <CardContent className="p-4 text-center">
+            <CheckCircle2 className="w-8 h-8 mx-auto text-success mb-2" />
+            <p className="text-2xl font-bold text-foreground">{stats.notRequired}</p>
+            <p className="text-xs text-muted-foreground">Steady Outlook</p>
           </CardContent>
         </Card>
       </div>
