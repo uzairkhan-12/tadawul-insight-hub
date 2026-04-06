@@ -14,8 +14,8 @@ interface ProductDetailProps {
 const finalCallIcon = (call: string) => {
   switch (call) {
     case "Not Required": return <CheckCircle2 className="w-5 h-5 text-success" />;
-    case "Keep an Eye": return <Eye className="w-5 h-5 text-warning" />;
-    case "Need an Action": return <AlertTriangle className="w-5 h-5 text-danger" />;
+    case "Stay Close": return <Eye className="w-5 h-5 text-warning" />;
+    case "Needs Action": return <AlertTriangle className="w-5 h-5 text-danger" />;
     default: return null;
   }
 };
@@ -23,8 +23,8 @@ const finalCallIcon = (call: string) => {
 const finalCallVariant = (call: string) => {
   switch (call) {
     case "Not Required": return "success";
-    case "Keep an Eye": return "warning";
-    case "Need an Action": return "danger";
+    case "Stay Close": return "warning";
+    case "Needs Action": return "danger";
     default: return "outline";
   }
 };
@@ -32,8 +32,8 @@ const finalCallVariant = (call: string) => {
 const finalCallBg = (call: string) => {
   switch (call) {
     case "Not Required": return "bg-success/5 border-success/20";
-    case "Keep an Eye": return "bg-warning/5 border-warning/20";
-    case "Need an Action": return "bg-danger/5 border-danger/20";
+    case "Stay Close": return "bg-warning/5 border-warning/20";
+    case "Needs Action": return "bg-danger/5 border-danger/20";
     default: return "";
   }
 };

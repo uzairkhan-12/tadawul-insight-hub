@@ -12,8 +12,8 @@ interface ProductsLandingProps {
 
 const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandingProps) => {
   const stats = getRagStats();
-  const actionItems = products.filter(p => p.finalCall === "Need an Action");
-  const watchItems = products.filter(p => p.finalCall === "Keep an Eye");
+  const actionItems = products.filter(p => p.finalCall === "Needs Action");
+  const watchItems = products.filter(p => p.finalCall === "Stay Close");
 
   return (
     <div className="space-y-8">
@@ -61,7 +61,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           <CardContent className="p-4 text-center">
             <Eye className="w-8 h-8 mx-auto text-warning mb-2" />
             <p className="text-2xl font-bold text-foreground">{stats.keepAnEye}</p>
-            <p className="text-xs text-muted-foreground">Keep an Eye</p>
+            <p className="text-xs text-muted-foreground">Stay Close</p>
           </CardContent>
         </Card>
       </div>
@@ -78,7 +78,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           {actionItems.length > 0 && (
             <div>
               <h4 className="text-sm font-semibold text-danger mb-2 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-danger" /> Need an Action ({actionItems.length})
+                <span className="w-2 h-2 rounded-full bg-danger" /> Needs Action ({actionItems.length})
               </h4>
               {actionItems.map(p => (
                 <div
@@ -91,7 +91,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
                       <span className="font-medium text-sm text-foreground">{p.name}</span>
                       <span className="text-xs text-muted-foreground ml-2">({p.subsidiary})</span>
                     </div>
-                    <Badge variant="danger">Need an Action</Badge>
+                    <Badge variant="danger">Needs Action</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">{p.finalCallDetails}</p>
                 </div>
@@ -100,7 +100,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           )}
           <div>
             <h4 className="text-sm font-semibold text-warning mb-2 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-warning" /> Keep an Eye ({watchItems.length})
+              <span className="w-2 h-2 rounded-full bg-warning" /> Stay Close ({watchItems.length})
             </h4>
             <div className="grid gap-2">
               {watchItems.map(p => (
@@ -114,7 +114,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
                       <span className="font-medium text-sm text-foreground">{p.name}</span>
                       <span className="text-xs text-muted-foreground ml-2">({p.subsidiary})</span>
                     </div>
-                    <Badge variant="warning">Keep an Eye</Badge>
+                    <Badge variant="warning">Stay Close</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">{p.finalCallDetails}</p>
                 </div>
