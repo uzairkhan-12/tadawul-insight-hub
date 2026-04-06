@@ -36,7 +36,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
             <li>And where action may be needed</li>
           </ul>
           <p className="text-foreground font-medium">
-            Overall, most products are competitive or aligned with the market, with only a few areas requiring closer attention or improvement.
+            The next step is to carry out practical workshops with each subsidiary team for their input and insights.
           </p>
         </CardContent>
       </Card>
