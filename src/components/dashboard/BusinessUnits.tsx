@@ -46,11 +46,7 @@ const BusinessUnits = () => {
             <CardContent className="p-5">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-background border border-border/50 flex items-center justify-center overflow-hidden p-1">
-                  {unit.logo ? (
-                    <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
-                  ) : (
-                    <span className="text-sm font-bold text-muted-foreground">{unit.name[0]}</span>
-                  )}
+                  <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
                 </div>
               </div>
               
