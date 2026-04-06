@@ -4,6 +4,7 @@ export interface CompetitorBrand {
   shortName: string;
   color: string; // bg color
   textColor: string;
+  logo?: string; // optional image path
 }
 
 export const competitorBrands: Record<string, CompetitorBrand> = {
