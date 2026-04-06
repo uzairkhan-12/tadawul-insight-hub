@@ -1,4 +1,4 @@
-export type FinalCall = "Not Required" | "Stay Close" | "Needs Action";
+export type FinalCall = "Steady Outlook" | "Stay Close" | "Needs Action";
 
 export interface Product {
   id: string;
@@ -107,7 +107,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Benchmark Standard Adoption",
     competitionDetails: "Competitors mainly compete on which index provider is adopted as the benchmark standard by investors—not price or platform. MSCI, FTSE Russell, and S&P Dow Jones Indices provide index weights that are widely used for benchmarking, ETF tracking, and portfolio construction.",
     summary: "Competition is about which index provider is trusted and adopted as the benchmark standard by investors.",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Index weight data offering is like competitors, with no clearly validated gap or differentiation issue identified.",
     sources: [
       "https://www.msci.com/indexes",
@@ -228,7 +228,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Monitoring Capability & Data Coverage",
     competitionDetails: "Competitors mainly compete on how effectively they can monitor employee trading activity and provide complete visibility across accounts. Edaa provides centralized market-wide visibility; competitors rely on fragmented or indirect data.",
     summary: "Competition is about who can provide the most complete and reliable visibility into employee trading activity.",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Edaa provides centralized market-wide visibility; competitors rely on fragmented or indirect data, limiting clear competitive disadvantage.",
     sources: [
       "https://www.nasdaq.com/solutions/ir-intelligence/equity-surveillance-shareholder-analysis",
@@ -260,7 +260,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Flexibility vs Institutional Standardization",
     competitionDetails: "Competitors mainly compete on how lightweight and flexible registry/governance setup can be for unlisted companies. Edaa provides a fully standardized, exchange-grade registry system.",
     summary: "Competition is about flexible optional setup vs adopting institutional-grade registry infrastructure.",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Edaa offers standardized registry services; alternatives provide flexibility, but no clear evidence of a critical competitive disadvantage.",
     sources: [
       "https://www.edaa.sa/wps/portal/edaa/services/unlistedissuersservices?locale=en",
@@ -286,7 +286,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Dividend Distribution Control",
     competitionDetails: "Competitors mainly compete on who controls and executes the dividend distribution workflow. Banks compete by offering dividend payments as part of custody services. Edaa controls distribution at the central registry level.",
     summary: "Competition is about centralized registry-driven distribution vs account-based bank execution.",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Difference is structural: custody-based vs centralized distribution; no clear competitive disadvantage identified.",
     sources: [
       "https://www.edaa.sa/wps/portal/edaa/services/listedissuerservices/dividendsdistribution?locale=en",
@@ -314,7 +314,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Platform Aggregation (Multi-Fund Access)",
     competitionDetails: "Competitors mainly compete on who can provide one platform with access to multiple fund managers. Platforms like Derayah and Aseel offer a 'fund marketplace' model. Edaa Connect competes with a centralized, infrastructure-backed approach linked to post-trade systems.",
     summary: "Competition is about who owns the investor entry point to access multiple funds (platform aggregation).",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Edaa Connect aligns with market fund marketplace model; no clear validated gap versus competitors based on available evidence.",
     sources: [
       "https://web.derayah.com/ar/mutual-funds-super-market/",
@@ -377,7 +377,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "AGM Functionality Depth",
     competitionDetails: "Competitors mainly compete on how comprehensive and reliable their meeting and AGM management capabilities are. Platforms like Jameeh, Ebana, Majles Tech, and Musahm compete by offering core AGM features. Liqaa provides a fully integrated, enterprise-grade solution.",
     summary: "Competition is about depth and completeness of AGM functionality within one platform.",
-    finalCall: "Not Required",
+    finalCall: "Steady Outlook",
     finalCallDetails: "Liqaa provides comprehensive AGM features comparable to competitors, with no clearly validated competitive gap identified.",
     sources: [],
   },
@@ -559,7 +559,7 @@ export const getProductById = (id: string): Product | undefined =>
   products.find((p) => p.id === id);
 
 export const getRagStats = () => {
-  const notRequired = products.filter((p) => p.finalCall === "Not Required").length;
+  const notRequired = products.filter((p) => p.finalCall === "Steady Outlook").length;
   const keepAnEye = products.filter((p) => p.finalCall === "Stay Close").length;
   const needAction = products.filter((p) => p.finalCall === "Needs Action").length;
   return { notRequired, keepAnEye, needAction, total: products.length };
