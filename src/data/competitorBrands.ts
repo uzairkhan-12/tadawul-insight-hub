@@ -37,7 +37,7 @@ export const competitorBrands: Record<string, CompetitorBrand> = {
   "Argaam": { name: "Argaam", shortName: "AR", color: "#D84315", textColor: "#fff" },
   "Mubasher": { name: "Mubasher", shortName: "MB", color: "#0277BD", textColor: "#fff" },
   "SIX": { name: "SIX Financial", shortName: "SX", color: "#37474F", textColor: "#fff" },
-  "Bloomberg BTCA": { name: "Bloomberg BTCA", shortName: "BT", color: "#F58025", textColor: "#fff" },
+  "Bloomberg BTCA": { name: "Bloomberg BTCA", shortName: "BT", color: "#F58025", textColor: "#fff", logo: "/images/logo-bloomberg.png" },
 };
 
 // Map competitor description strings to brand keys
