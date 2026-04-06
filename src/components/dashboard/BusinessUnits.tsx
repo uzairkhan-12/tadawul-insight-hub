@@ -10,6 +10,11 @@ const units = [
     logo: logoSaudiExchange,
   },
   {
+    name: "Muqassa",
+    description: "Central counterparty clearing",
+    logo: null,
+  },
+  {
     name: "Edaa",
     description: "Central securities depository",
     logo: logoEdaa,
@@ -30,7 +35,7 @@ const BusinessUnits = () => {
         <span className="text-sm text-muted-foreground">Integrated Market Infrastructure</span>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {units.map((unit, index) => (
           <Card 
             key={unit.name}
@@ -40,7 +45,11 @@ const BusinessUnits = () => {
             <CardContent className="p-5">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-background border border-border/50 flex items-center justify-center overflow-hidden p-1">
-                  <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
+                  {unit.logo ? (
+                    <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
+                  ) : (
+                    <span className="text-sm font-bold text-muted-foreground">{unit.name[0]}</span>
+                  )}
                 </div>
               </div>
               
