@@ -19,7 +19,7 @@ export const competitorBrands: Record<string, CompetitorBrand> = {
   "Dinar": { name: "Dinar Investment", shortName: "DI", color: "#4E342E", textColor: "#fff", logo: "/images/logo-dinar.png" },
   "Tarmeez": { name: "Tarmeez Capital", shortName: "TZ", color: "#6A1B9A", textColor: "#fff", logo: "/images/logo-tarmeez.png" },
   "Aseel": { name: "Aseel Capital", shortName: "AS", color: "#0D47A1", textColor: "#fff", logo: "/images/logo-aseel.png" },
-  "Stake": { name: "Stake", shortName: "ST", color: "#00C853", textColor: "#fff" },
+  "Stake": { name: "Stake", shortName: "ST", color: "#00C853", textColor: "#fff", logo: "/images/logo-stake.png" },
   "Nasdaq": { name: "Nasdaq SMARTS", shortName: "NQ", color: "#0096D6", textColor: "#fff" },
   "In-house": { name: "In-house Tools", shortName: "IH", color: "#546E7A", textColor: "#fff" },
   "Corporate Sec": { name: "Corporate Secretarial", shortName: "CS", color: "#795548", textColor: "#fff" },
