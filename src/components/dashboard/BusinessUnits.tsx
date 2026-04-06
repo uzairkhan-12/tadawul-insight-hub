@@ -10,6 +10,11 @@ const units = [
     logo: logoSaudiExchange,
   },
   {
+    name: "Muqassa",
+    description: "Central counterparty clearing",
+    logo: null,
+  },
+  {
     name: "Edaa",
     description: "Central securities depository",
     logo: logoEdaa,
