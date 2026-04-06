@@ -78,6 +78,14 @@ const CompetitorLogo = ({ name, desc }: { name: string; desc: string }) => {
     );
   }
 
+  if (brand.logo) {
+    return (
+      <div className="w-10 h-10 rounded-lg bg-background border border-border/50 flex items-center justify-center shrink-0 overflow-hidden p-1">
+        <img src={brand.logo} alt={brand.name} className="w-full h-full object-contain" loading="lazy" />
+      </div>
+    );
+  }
+
   return (
     <div
       className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
