@@ -17,7 +17,7 @@ export const competitorBrands: Record<string, CompetitorBrand> = {
   "S&P": { name: "S&P Global / DJI", shortName: "SP", color: "#E31837", textColor: "#fff" },
   "Sukuk Capital": { name: "Sukuk Capital", shortName: "SK", color: "#1B5E20", textColor: "#fff", logo: "/images/logo-sukuk.png" },
   "Dinar": { name: "Dinar Investment", shortName: "DI", color: "#4E342E", textColor: "#fff", logo: "/images/logo-dinar.png" },
-  "Tarmeez": { name: "Tarmeez Capital", shortName: "TZ", color: "#6A1B9A", textColor: "#fff" },
+  "Tarmeez": { name: "Tarmeez Capital", shortName: "TZ", color: "#6A1B9A", textColor: "#fff", logo: "/images/logo-tarmeez.png" },
   "Aseel": { name: "Aseel Capital", shortName: "AS", color: "#0D47A1", textColor: "#fff" },
   "Stake": { name: "Stake", shortName: "ST", color: "#00C853", textColor: "#fff" },
   "Nasdaq": { name: "Nasdaq SMARTS", shortName: "NQ", color: "#0096D6", textColor: "#fff" },
