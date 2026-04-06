@@ -11,8 +11,8 @@ interface ProductCardProps {
 const finalCallVariant = (call: string) => {
   switch (call) {
     case "Not Required": return "success";
-    case "Keep an Eye": return "warning";
-    case "Need an Action": return "danger";
+    case "Stay Close": return "warning";
+    case "Needs Action": return "danger";
     default: return "outline";
   }
 };

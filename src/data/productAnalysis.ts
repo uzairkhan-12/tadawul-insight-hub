@@ -24,8 +24,8 @@ export interface ProductAnalysis {
 export const ragToFinalCall = (rag: RagRating): FinalCall => {
   switch (rag) {
     case "Green": return "Not Required";
-    case "Amber": return "Keep an Eye";
-    case "Red": return "Need an Action";
+    case "Amber": return "Stay Close";
+    case "Red": return "Needs Action";
   }
 };
 
