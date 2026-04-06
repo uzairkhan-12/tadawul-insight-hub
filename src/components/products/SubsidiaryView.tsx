@@ -23,7 +23,7 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
   if (!subsidiary) return <p className="text-muted-foreground">Subsidiary not found.</p>;
 
   const products = getProductsBySubsidiary(subsidiary.name);
-  const notRequired = products.filter(p => p.finalCall === "Not Required").length;
+  const notRequired = products.filter(p => p.finalCall === "Steady Outlook").length;
   const keepAnEye = products.filter(p => p.finalCall === "Stay Close").length;
   const needAction = products.filter(p => p.finalCall === "Needs Action").length;
 
@@ -56,7 +56,7 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
               ))}
             </div>
             <div className="flex items-center gap-2 ml-auto">
-              {notRequired > 0 && <Badge variant="success">{notRequired} Not Required</Badge>}
+              {notRequired > 0 && <Badge variant="success">{notRequired} Steady Outlook</Badge>}
               {keepAnEye > 0 && <Badge variant="warning">{keepAnEye} Stay Close</Badge>}
               {needAction > 0 && <Badge variant="danger">{needAction} Need Action</Badge>}
             </div>

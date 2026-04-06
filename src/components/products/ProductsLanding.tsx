@@ -54,7 +54,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           <CardContent className="p-4 text-center">
             <CheckCircle2 className="w-8 h-8 mx-auto text-success mb-2" />
             <p className="text-2xl font-bold text-foreground">{stats.notRequired}</p>
-            <p className="text-xs text-muted-foreground">Not Required</p>
+            <p className="text-xs text-muted-foreground">Steady Outlook</p>
           </CardContent>
         </Card>
         <Card className="border-warning/30">
