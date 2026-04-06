@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import logoSaudiExchange from "@/assets/logo-saudi-exchange.png";
 import logoEdaa from "@/assets/logo-edaa.png";
 import logoWamid from "@/assets/logo-wamid.png";
+import logoMuqassa from "@/assets/logo-muqassa.png";
 
 const units = [
   {
@@ -12,7 +13,7 @@ const units = [
   {
     name: "Muqassa",
     description: "Central counterparty clearing",
-    logo: null,
+    logo: logoMuqassa,
   },
   {
     name: "Edaa",
@@ -45,11 +46,7 @@ const BusinessUnits = () => {
             <CardContent className="p-5">
               <div className="flex items-start justify-between mb-4">
                 <div className="w-12 h-12 rounded-xl bg-background border border-border/50 flex items-center justify-center overflow-hidden p-1">
-                  {unit.logo ? (
-                    <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
-                  ) : (
-                    <span className="text-sm font-bold text-muted-foreground">{unit.name[0]}</span>
-                  )}
+                  <img src={unit.logo} alt={unit.name} className="w-full h-full object-contain" loading="lazy" />
                 </div>
               </div>
               
