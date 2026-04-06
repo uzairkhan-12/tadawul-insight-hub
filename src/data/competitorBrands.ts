@@ -4,10 +4,11 @@ export interface CompetitorBrand {
   shortName: string;
   color: string; // bg color
   textColor: string;
+  logo?: string; // optional image path
 }
 
 export const competitorBrands: Record<string, CompetitorBrand> = {
-  "Bloomberg": { name: "Bloomberg", shortName: "BB", color: "#F58025", textColor: "#fff" },
+  "Bloomberg": { name: "Bloomberg", shortName: "BB", color: "#F58025", textColor: "#fff", logo: "/images/logo-bloomberg.png" },
   "LSEG": { name: "LSEG/Refinitiv", shortName: "LS", color: "#003B5C", textColor: "#fff" },
   "ICE": { name: "ICE", shortName: "ICE", color: "#0033A0", textColor: "#fff" },
   "FactSet": { name: "FactSet", shortName: "FS", color: "#D32F2F", textColor: "#fff" },
@@ -36,7 +37,7 @@ export const competitorBrands: Record<string, CompetitorBrand> = {
   "Argaam": { name: "Argaam", shortName: "AR", color: "#D84315", textColor: "#fff" },
   "Mubasher": { name: "Mubasher", shortName: "MB", color: "#0277BD", textColor: "#fff" },
   "SIX": { name: "SIX Financial", shortName: "SX", color: "#37474F", textColor: "#fff" },
-  "Bloomberg BTCA": { name: "Bloomberg BTCA", shortName: "BT", color: "#F58025", textColor: "#fff" },
+  "Bloomberg BTCA": { name: "Bloomberg BTCA", shortName: "BT", color: "#F58025", textColor: "#fff", logo: "/images/logo-bloomberg.png" },
 };
 
 // Map competitor description strings to brand keys
