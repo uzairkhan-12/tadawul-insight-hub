@@ -25,7 +25,7 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
   const products = getProductsBySubsidiary(subsidiary.name);
   const notRequired = products.filter(p => p.finalCall === "Steady Outlook").length;
   const keepAnEye = products.filter(p => p.finalCall === "Close Monitoring").length;
-  const needAction = products.filter(p => p.finalCall === "Needs Action").length;
+  const needAction = products.filter(p => p.finalCall === "Immediate Opportunity").length;
 
   return (
     <div className="space-y-6">

@@ -12,7 +12,7 @@ const finalCallVariant = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "success";
     case "Close Monitoring": return "warning";
-    case "Needs Action": return "danger";
+    case "Immediate Opportunity": return "danger";
     default: return "outline";
   }
 };

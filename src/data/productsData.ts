@@ -1,4 +1,4 @@
-export type FinalCall = "Steady Outlook" | "Close Monitoring" | "Needs Action";
+export type FinalCall = "Steady Outlook" | "Close Monitoring" | "Immediate Opportunity";
 
 export interface Product {
   id: string;
@@ -460,7 +460,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Coverage Breadth (Public vs Private Global Depth)",
     competitionDetails: "Competitors mainly compete on how broad and complete their company coverage is—across public, private, and global markets. Bloomberg, Capital IQ, FactSet, and LSEG all provide fundamentals but differentiate on coverage scale and reach. Wamid offers deep, localized Saudi fundamentals while global players offer multi-country breadth.",
     summary: "Competition is about who has the widest and most complete company coverage (global + private), not just data format.",
-    finalCall: "Needs Action",
+    finalCall: "Immediate Opportunity",
     finalCallDetails: "Global providers offer broader multi-country and private coverage; Wamid is strong locally but lacks global depth and scalability.",
     sources: [
       "https://www.spglobal.com/marketintelligence/en/solutions/sp-capital-iq-pro",
@@ -561,6 +561,6 @@ export const getProductById = (id: string): Product | undefined =>
 export const getRagStats = () => {
   const notRequired = products.filter((p) => p.finalCall === "Steady Outlook").length;
   const keepAnEye = products.filter((p) => p.finalCall === "Close Monitoring").length;
-  const needAction = products.filter((p) => p.finalCall === "Needs Action").length;
+  const needAction = products.filter((p) => p.finalCall === "Immediate Opportunity").length;
   return { notRequired, keepAnEye, needAction, total: products.length };
 };
