@@ -47,7 +47,7 @@ const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
             <div className="flex items-center gap-2 mt-3 flex-wrap">
               <Badge variant="glass" className="text-xs">{subsidiary.productCount} Products</Badge>
               {needAction > 0 && (
-                <Badge variant="danger" className="text-xs">{needAction} Need Action</Badge>
+                <Badge variant="danger" className="text-xs">{needAction} Immediate Opportunity</Badge>
               )}
               {keepAnEye > 0 && (
                 <Badge variant="warning" className="text-xs">{keepAnEye} Close Monitoring</Badge>
