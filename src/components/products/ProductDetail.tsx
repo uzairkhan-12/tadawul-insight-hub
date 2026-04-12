@@ -14,7 +14,7 @@ interface ProductDetailProps {
 const finalCallIcon = (call: string) => {
   switch (call) {
     case "Steady Outlook": return <CheckCircle2 className="w-5 h-5 text-success" />;
-    case "Stay Close": return <Eye className="w-5 h-5 text-warning" />;
+    case "Close Monitoring": return <Eye className="w-5 h-5 text-warning" />;
     case "Needs Action": return <AlertTriangle className="w-5 h-5 text-danger" />;
     default: return null;
   }
@@ -23,7 +23,7 @@ const finalCallIcon = (call: string) => {
 const finalCallVariant = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "success";
-    case "Stay Close": return "warning";
+    case "Close Monitoring": return "warning";
     case "Needs Action": return "danger";
     default: return "outline";
   }
@@ -32,7 +32,7 @@ const finalCallVariant = (call: string) => {
 const finalCallBg = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "bg-success/5 border-success/20";
-    case "Stay Close": return "bg-warning/5 border-warning/20";
+    case "Close Monitoring": return "bg-warning/5 border-warning/20";
     case "Needs Action": return "bg-danger/5 border-danger/20";
     default: return "";
   }

@@ -1,4 +1,4 @@
-export type FinalCall = "Steady Outlook" | "Stay Close" | "Needs Action";
+export type FinalCall = "Steady Outlook" | "Close Monitoring" | "Needs Action";
 
 export interface Product {
   id: string;
@@ -75,7 +75,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "License / Usage Rights",
     competitionDetails: "Competitors mainly compete on how data is licensed and used (non-display rights)—not price or platform. Bloomberg, LSEG, ICE, and FactSet all compete by offering enterprise data licenses that allow this exact usage (APIs, feeds, internal systems). Clients compare who gives better licensing flexibility, compliance structure, and usage coverage.",
     summary: "Competition is about who controls and defines the rules of using data inside systems (license model).",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competition centers on non-display licensing models; no clear differentiation, but no proven disadvantage requiring immediate action.",
     sources: [
       "https://www.cmegroup.com/market-data/distributor/files/cme-group-data-licensing-policy-guidelines-and-non-display-licensing-faq.pdf",
@@ -135,7 +135,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Platform & Accessibility",
     competitionDetails: "Competitors mainly compete on how easily and flexibly users can access, integrate, and use tick/intraday data—rather than the data itself. Bloomberg provides market data through enterprise feeds (B-PIPE) and APIs.",
     summary: "Competition is about who delivers tick data in the most accessible, flexible, and integration-ready way (APIs, cloud, formats).",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Tick data delivery is simpler and less integration-focused; potential gap exists but not strongly validated as a disadvantage.",
     sources: [
       "https://professional.bloomberg.com/products/data/enterprise-catalog/real-time-data-feed/",
@@ -167,7 +167,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Investor Access & Distribution Reach",
     competitionDetails: "Competitors mainly compete on how effectively issuances are distributed to investors and accessed by capital—not on the sukuk structure itself. Sukuk Capital, Dinar, and Tarmeez compete by offering targeted investor access via platforms/private networks. Saudi Exchange provides broad, open investor access through a regulated market.",
     summary: "Competition is about who can deliver broader and more effective access to investor capital.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Private platforms offer alternative capital access routes, but exchange listing remains strong for scale and transparency.",
     sources: [
       "https://www.saudiexchange.sa/wps/portal/saudiexchange/products-services/sukuk-bonds",
@@ -196,7 +196,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Structuring & Issuance Flexibility",
     competitionDetails: "Competitors mainly compete on how flexibly real estate investments can be structured, packaged, and brought to investors. Platforms like Aseel Capital and Stake allow custom deal structuring, faster setup, and tailored investor terms.",
     summary: "Competition is about flexible deal structuring vs standardized listed REIT structures.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Platform competitors offer flexible structuring; exchange REITs remain standardized, creating limited but non-critical competitive pressure.",
     sources: [
       "https://www.saudiexchange.sa/wps/portal/saudiexchange/products-services/reits",
@@ -342,7 +342,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Communication Channel Control",
     competitionDetails: "Competitors mainly compete on who controls the shareholder communication channel. SMS providers offer API-based messaging infrastructure but lack direct linkage to shareholder data. Tawasul enables issuer-to-shareholder communication directly tied to registry data.",
     summary: "Competition is about generic messaging infrastructure vs shareholder-linked communication control.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competitors offer scalable SMS infrastructure; Tawasul differentiates via shareholder-linked targeting but has narrower use-case focus.",
     sources: [
       "https://www.unifonic.com/en/channels/sms",
@@ -405,7 +405,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Workflow Automation & STP",
     competitionDetails: "Competitors mainly compete on how well corporate actions data can be integrated into operational workflows and automated (Straight-Through Processing). LSEG, SIX, and S&P Global deliver fully structured, machine-readable data feeds that plug directly into custody, trading, and back-office systems.",
     summary: "Competition is about who enables the most seamless automation of corporate actions into client workflows (STP capability).",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Wamid offers strong automation, but global providers lead in standardized STP scale; gap exists but not critical.",
     sources: [],
   },
@@ -434,7 +434,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Data Construction Methodology",
     competitionDetails: "Competitors mainly compete on how investor data is constructed and built. LSEG, Bloomberg, S&P, and FactSet build investor datasets by combining filings, disclosures, and fund holdings. Wamid's report is based on actual trading activity from the exchange.",
     summary: "Competition is about model/constructed ownership data vs actual trading activity data.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competitors use multi-source ownership models; Wamid relies on actual trading data, creating a differentiated but narrower dataset.",
     sources: [],
   },
@@ -488,7 +488,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Data Usability & Integration Readiness",
     competitionDetails: "Competitors mainly compete on how usable and ready-to-integrate the order book data is. LSEG and FactSet provide normalized, standardized datasets across markets. Wamid delivers raw, venue-specific data which is more precise but requires more internal processing.",
     summary: "Competition is about normalized, ready-to-use datasets vs raw exchange-native data.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competitors offer normalized datasets; Wamid provides raw data, increasing processing effort but not yet a critical competitive disadvantage.",
     sources: [],
   },
@@ -516,7 +516,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Data Aggregation & Source Integration",
     competitionDetails: "Competitors mainly compete on how well they aggregate, normalize, and enrich ownership data from multiple sources. Bloomberg, LSEG, FactSet, and S&P build value by collecting ownership data from filings, funds, regulators, and multiple markets. Wamid Issuer Pack offers direct exchange-sourced ownership data.",
     summary: "Competition is about aggregated multi-source ownership intelligence vs single-source exchange-level data.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competitors aggregate multi-source ownership data; Wamid focuses on exchange data, creating a moderate but not critical competitive gap.",
     sources: [],
   },
@@ -541,7 +541,7 @@ export const products: Product[] = [
     mainCompetitionComponent: "Best Execution Validation",
     competitionDetails: "Competitors mainly compete on how well they can prove execution quality (best execution). Bloomberg BTCA enables firms to measure, verify, and demonstrate execution performance against benchmarks for compliance and client reporting. Wamid Buy-Side Pack provides benchmarking insights but global TCA tools are positioned as formal validation tools.",
     summary: "Competition is about proving execution quality vs analysing it.",
-    finalCall: "Stay Close",
+    finalCall: "Close Monitoring",
     finalCallDetails: "Competitors emphasize execution validation, while Buy-Side Pack focuses on analytics; gap exists but not clearly critical.",
     sources: [
       "https://professional.bloomberg.com/products/trading/post-trade-services/btca/",
@@ -560,7 +560,7 @@ export const getProductById = (id: string): Product | undefined =>
 
 export const getRagStats = () => {
   const notRequired = products.filter((p) => p.finalCall === "Steady Outlook").length;
-  const keepAnEye = products.filter((p) => p.finalCall === "Stay Close").length;
+  const keepAnEye = products.filter((p) => p.finalCall === "Close Monitoring").length;
   const needAction = products.filter((p) => p.finalCall === "Needs Action").length;
   return { notRequired, keepAnEye, needAction, total: products.length };
 };

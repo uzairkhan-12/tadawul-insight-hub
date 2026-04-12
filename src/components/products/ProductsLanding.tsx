@@ -13,7 +13,7 @@ interface ProductsLandingProps {
 const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandingProps) => {
   const stats = getRagStats();
   const actionItems = products.filter(p => p.finalCall === "Needs Action");
-  const watchItems = products.filter(p => p.finalCall === "Stay Close");
+  const watchItems = products.filter(p => p.finalCall === "Close Monitoring");
 
   return (
     <div className="space-y-8">
@@ -54,7 +54,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           <CardContent className="p-4 text-center">
             <Eye className="w-8 h-8 mx-auto text-warning mb-2" />
             <p className="text-2xl font-bold text-foreground">{stats.keepAnEye}</p>
-            <p className="text-xs text-muted-foreground">Stay Close</p>
+            <p className="text-xs text-muted-foreground">Close Monitoring</p>
           </CardContent>
         </Card>
         <Card className="border-success/30">
@@ -100,7 +100,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           )}
           <div>
             <h4 className="text-sm font-semibold text-warning mb-2 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-warning" /> Stay Close ({watchItems.length})
+              <span className="w-2 h-2 rounded-full bg-warning" /> Close Monitoring ({watchItems.length})
             </h4>
             <div className="grid gap-2">
               {watchItems.map(p => (
@@ -114,7 +114,7 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
                       <span className="font-medium text-sm text-foreground">{p.name}</span>
                       <span className="text-xs text-muted-foreground ml-2">({p.subsidiary})</span>
                     </div>
-                    <Badge variant="warning">Stay Close</Badge>
+                    <Badge variant="warning">Close Monitoring</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">{p.finalCallDetails}</p>
                 </div>

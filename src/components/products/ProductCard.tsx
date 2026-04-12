@@ -11,7 +11,7 @@ interface ProductCardProps {
 const finalCallVariant = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "success";
-    case "Stay Close": return "warning";
+    case "Close Monitoring": return "warning";
     case "Needs Action": return "danger";
     default: return "outline";
   }
