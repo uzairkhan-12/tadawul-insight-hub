@@ -58,7 +58,7 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
             <div className="flex items-center gap-2 ml-auto">
               {notRequired > 0 && <Badge variant="success">{notRequired} Steady Outlook</Badge>}
               {keepAnEye > 0 && <Badge variant="warning">{keepAnEye} Close Monitoring</Badge>}
-              {needAction > 0 && <Badge variant="danger">{needAction} Need Action</Badge>}
+              {needAction > 0 && <Badge variant="danger">{needAction} Immediate Opportunity</Badge>}
             </div>
           </div>
         </CardContent>
