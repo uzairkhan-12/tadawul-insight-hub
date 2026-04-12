@@ -64,7 +64,7 @@ const Index = () => {
           <div className="container mx-auto px-6 py-6">
             <div className="flex items-center justify-between text-sm text-muted-foreground">
               <p>STG Landscape Dashboard</p>
-              <p>Last Updated: December 2025</p>
+              <p>Last Updated: April 2026</p>
             </div>
           </div>
         </footer>
