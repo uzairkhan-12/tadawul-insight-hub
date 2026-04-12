@@ -15,7 +15,7 @@ const finalCallIcon = (call: string) => {
   switch (call) {
     case "Steady Outlook": return <CheckCircle2 className="w-5 h-5 text-success" />;
     case "Close Monitoring": return <Eye className="w-5 h-5 text-warning" />;
-    case "Needs Action": return <AlertTriangle className="w-5 h-5 text-danger" />;
+    case "Immediate Opportunity": return <AlertTriangle className="w-5 h-5 text-danger" />;
     default: return null;
   }
 };
@@ -24,7 +24,7 @@ const finalCallVariant = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "success";
     case "Close Monitoring": return "warning";
-    case "Needs Action": return "danger";
+    case "Immediate Opportunity": return "danger";
     default: return "outline";
   }
 };
@@ -33,7 +33,7 @@ const finalCallBg = (call: string) => {
   switch (call) {
     case "Steady Outlook": return "bg-success/5 border-success/20";
     case "Close Monitoring": return "bg-warning/5 border-warning/20";
-    case "Needs Action": return "bg-danger/5 border-danger/20";
+    case "Immediate Opportunity": return "bg-danger/5 border-danger/20";
     default: return "";
   }
 };

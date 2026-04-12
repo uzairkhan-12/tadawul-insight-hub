@@ -20,7 +20,7 @@ interface SubsidiaryCardProps {
 
 const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
   const products = getProductsBySubsidiary(subsidiary.name);
-  const needAction = products.filter(p => p.finalCall === "Needs Action").length;
+  const needAction = products.filter(p => p.finalCall === "Immediate Opportunity").length;
   const keepAnEye = products.filter(p => p.finalCall === "Close Monitoring").length;
   const logo = subsidiaryLogos[subsidiary.id];
 
