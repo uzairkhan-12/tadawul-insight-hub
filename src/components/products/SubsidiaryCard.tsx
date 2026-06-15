@@ -19,9 +19,6 @@ interface SubsidiaryCardProps {
 }
 
 const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
-  const products = getProductsBySubsidiary(subsidiary.name);
-  const needAction = products.filter(p => p.finalCall === "Immediate Opportunity").length;
-  const keepAnEye = products.filter(p => p.finalCall === "Close Monitoring").length;
   const logo = subsidiaryLogos[subsidiary.id];
 
   return (
@@ -46,12 +43,6 @@ const SubsidiaryCard = ({ subsidiary, onClick }: SubsidiaryCardProps) => {
             <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{subsidiary.description}</p>
             <div className="flex items-center gap-2 mt-3 flex-wrap">
               <Badge variant="glass" className="text-xs">{subsidiary.productCount} Products</Badge>
-              {needAction > 0 && (
-                <Badge variant="danger" className="text-xs">{needAction} Immediate Opportunity</Badge>
-              )}
-              {keepAnEye > 0 && (
-                <Badge variant="warning" className="text-xs">{keepAnEye} Close Monitoring</Badge>
-              )}
             </div>
             <div className="flex gap-1 mt-2 flex-wrap">
               {subsidiary.teams.map(team => (

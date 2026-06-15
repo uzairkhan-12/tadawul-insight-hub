@@ -126,17 +126,12 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
       {/* Header */}
       <Card>
         <CardHeader>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-sm text-muted-foreground">{product.subsidiary} • {product.relatedTeam}</p>
-              <CardTitle className="text-xl mt-1">{product.name}</CardTitle>
-              <p className="text-sm text-muted-foreground mt-2">
-                <span className="font-medium text-foreground">Client:</span> {product.client}
-              </p>
-            </div>
-            <Badge variant={finalCallVariant(product.finalCall) as any} className="text-sm px-3 py-1 shrink-0">
-              {product.finalCall}
-            </Badge>
+          <div>
+            <p className="text-sm text-muted-foreground">{product.subsidiary} • {product.relatedTeam}</p>
+            <CardTitle className="text-xl mt-1">{product.name}</CardTitle>
+            <p className="text-sm text-muted-foreground mt-2">
+              <span className="font-medium text-foreground">Client:</span> {product.client}
+            </p>
           </div>
         </CardHeader>
       </Card>
@@ -292,26 +287,6 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         </Card>
       )}
 
-      {/* Final Call */}
-      <Card className={`border ${finalCallBg(product.finalCall)}`}>
-        <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
-            Final Call
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-start gap-3">
-            {finalCallIcon(product.finalCall)}
-            <div>
-              <Badge variant={finalCallVariant(product.finalCall) as any} className="mb-2">
-                {product.finalCall}
-              </Badge>
-              <p className="text-sm text-muted-foreground">{product.finalCallDetails}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Sources */}
       {product.sources.length > 0 && (

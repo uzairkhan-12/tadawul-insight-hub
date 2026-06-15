@@ -23,9 +23,6 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
   if (!subsidiary) return <p className="text-muted-foreground">Subsidiary not found.</p>;
 
   const products = getProductsBySubsidiary(subsidiary.name);
-  const notRequired = products.filter(p => p.finalCall === "Steady Outlook").length;
-  const keepAnEye = products.filter(p => p.finalCall === "Close Monitoring").length;
-  const needAction = products.filter(p => p.finalCall === "Immediate Opportunity").length;
 
   return (
     <div className="space-y-6">
@@ -47,19 +44,12 @@ const SubsidiaryView = ({ subsidiaryId, onSelectProduct }: SubsidiaryViewProps) 
           </div>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">Teams:</span>
-              {subsidiary.teams.map(team => (
-                <Badge key={team} variant="glass" className="text-xs">{team}</Badge>
-              ))}
-            </div>
-            <div className="flex items-center gap-2 ml-auto">
-              {notRequired > 0 && <Badge variant="success">{notRequired} Steady Outlook</Badge>}
-              {keepAnEye > 0 && <Badge variant="warning">{keepAnEye} Close Monitoring</Badge>}
-              {needAction > 0 && <Badge variant="danger">{needAction} Immediate Opportunity</Badge>}
-            </div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <Users className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">Teams:</span>
+            {subsidiary.teams.map(team => (
+              <Badge key={team} variant="glass" className="text-xs">{team}</Badge>
+            ))}
           </div>
         </CardContent>
       </Card>
