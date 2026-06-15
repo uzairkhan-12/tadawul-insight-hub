@@ -104,11 +104,6 @@ const AnalysisDimensionRow = ({ dim }: { dim: AnalysisDimension }) => (
         <span className="text-sm">{dim.dimension}</span>
       </div>
     </TableCell>
-    <TableCell>
-      <Badge variant={ragVariant(dim.rating) as any} className="text-xs">
-        {ragLabel(dim.rating)}
-      </Badge>
-    </TableCell>
     <TableCell className="text-sm text-muted-foreground max-w-md">{dim.description}</TableCell>
     <TableCell className="text-sm text-muted-foreground max-w-xs">{dim.stgPosition || "—"}</TableCell>
   </TableRow>
@@ -248,18 +243,10 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
       {analysis && (
         <Card>
           <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-base flex items-center gap-2">
-                <Gauge className="w-4 h-4 text-primary" />
-                Detailed Analysis
-              </CardTitle>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Overall:</span>
-                <Badge variant={ragVariant(analysis.overallRag) as any} className="text-sm px-3 py-1">
-                  {ragLabel(analysis.overallRag)}
-                </Badge>
-              </div>
-            </div>
+            <CardTitle className="text-base flex items-center gap-2">
+              <Gauge className="w-4 h-4 text-primary" />
+              Detailed Analysis
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -267,7 +254,6 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[180px]">Dimension</TableHead>
-                    <TableHead className="w-[80px]">RAG</TableHead>
                     <TableHead>Assessment</TableHead>
                     <TableHead className="w-[200px]">STG Positioning</TableHead>
                   </TableRow>
