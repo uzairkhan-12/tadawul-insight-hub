@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { products, subsidiaries, getRagStats } from "@/data/productsData";
+import { products, subsidiaries } from "@/data/productsData";
 import SubsidiaryCard from "./SubsidiaryCard";
 import ProductCard from "./ProductCard";
-import { AlertTriangle, Eye, CheckCircle2, Package, Building2, Target } from "lucide-react";
+import { Target } from "lucide-react";
+import stgLogo from "@/assets/stg-logo.png.asset.json";
 
 interface ProductsLandingProps {
   onSelectSubsidiary: (id: string) => void;
@@ -11,12 +11,20 @@ interface ProductsLandingProps {
 }
 
 const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandingProps) => {
-  const stats = getRagStats();
-  const actionItems = products.filter(p => p.finalCall === "Immediate Opportunity");
-  const watchItems = products.filter(p => p.finalCall === "Close Monitoring");
-
   return (
     <div className="space-y-8">
+      {/* Title + Logo */}
+      <div className="flex items-center justify-between gap-6 flex-wrap">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
+          Non-Trading Competitive Landscape
+        </h1>
+        <img
+          src={stgLogo.url}
+          alt="Saudi Tadawul Group"
+          className="h-14 md:h-16 w-auto object-contain"
+        />
+      </div>
+
       {/* Context & Objectives */}
       <Card className="border-primary/20">
         <CardHeader>
@@ -29,98 +37,9 @@ const ProductsLanding = ({ onSelectSubsidiary, onSelectProduct }: ProductsLandin
           <p>
             This dashboard provides a structured benchmarking assessment of key non-trading products across Saudi Tadawul Group (STG) subsidiaries, including Saudi Exchange, Edaa, and Wamid. It compares each product against relevant local and global competitors to understand how they compete in the market—whether through licensing models, data capabilities, platform access, or distribution capabilities.
           </p>
-          <p>The goal is to clearly identify where STG stands today:</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Where it is already competitive</li>
-            <li>Where it should monitor the market</li>
-            <li>And where action may be needed</li>
-          </ul>
           <p className="text-foreground font-medium">
             The next step is to carry out practical workshops with each subsidiary team for their input and insights.
           </p>
-        </CardContent>
-      </Card>
-
-      {/* Quick Snapshot */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <Card className="border-danger/30">
-          <CardContent className="p-4 text-center">
-            <AlertTriangle className="w-8 h-8 mx-auto text-danger mb-2" />
-            <p className="text-2xl font-bold text-foreground">{stats.needAction}</p>
-            <p className="text-xs text-muted-foreground">Immediate Opportunity</p>
-          </CardContent>
-        </Card>
-        <Card className="border-warning/30">
-          <CardContent className="p-4 text-center">
-            <Eye className="w-8 h-8 mx-auto text-warning mb-2" />
-            <p className="text-2xl font-bold text-foreground">{stats.keepAnEye}</p>
-            <p className="text-xs text-muted-foreground">Close Monitoring</p>
-          </CardContent>
-        </Card>
-        <Card className="border-success/30">
-          <CardContent className="p-4 text-center">
-            <CheckCircle2 className="w-8 h-8 mx-auto text-success mb-2" />
-            <p className="text-2xl font-bold text-foreground">{stats.notRequired}</p>
-            <p className="text-xs text-muted-foreground">Steady Outlook</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Key Opportunities */}
-      <Card className="border-danger/20">
-        <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-danger" />
-            Key Opportunities
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {actionItems.length > 0 && (
-            <div>
-              <h4 className="text-sm font-semibold text-danger mb-2 flex items-center gap-1">
-                <span className="w-2 h-2 rounded-full bg-danger" /> Immediate Opportunity ({actionItems.length})
-              </h4>
-              {actionItems.map(p => (
-                <div
-                  key={p.id}
-                  className="p-3 rounded-lg bg-danger/5 border border-danger/20 cursor-pointer hover:bg-danger/10 transition-colors"
-                  onClick={() => onSelectProduct(p.id)}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-medium text-sm text-foreground">{p.name}</span>
-                      <span className="text-xs text-muted-foreground ml-2">({p.subsidiary})</span>
-                    </div>
-                    <Badge variant="danger">Immediate Opportunity</Badge>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-1">{p.finalCallDetails}</p>
-                </div>
-              ))}
-            </div>
-          )}
-          <div>
-            <h4 className="text-sm font-semibold text-warning mb-2 flex items-center gap-1">
-              <span className="w-2 h-2 rounded-full bg-warning" /> Close Monitoring ({watchItems.length})
-            </h4>
-            <div className="grid gap-2">
-              {watchItems.map(p => (
-                <div
-                  key={p.id}
-                  className="p-3 rounded-lg bg-warning/5 border border-warning/20 cursor-pointer hover:bg-warning/10 transition-colors"
-                  onClick={() => onSelectProduct(p.id)}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="font-medium text-sm text-foreground">{p.name}</span>
-                      <span className="text-xs text-muted-foreground ml-2">({p.subsidiary})</span>
-                    </div>
-                    <Badge variant="warning">Close Monitoring</Badge>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-1">{p.finalCallDetails}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </CardContent>
       </Card>
 
